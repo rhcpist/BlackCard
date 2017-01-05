@@ -1,0 +1,37 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+.svg-container { 
+	display: inline-block;
+	position: relative;
+	width: 60%;
+	vertical-align: middle; 
+	overflow: hidden; 
+}
+
+[id^=radio-] {
+  display: none;
+}
+
+[id^=radio-] + label {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 50px;
+  color: #555;
+  cursor: pointer;
+}
+
+[id^=radio-]:checked + label {
+  cursor: text;
+  border-radius: 7px;
+  opacity: 0.3;
+}
+
+
+
+
+
