@@ -72,23 +72,16 @@
           <label><input type="radio" name="optradio">Фото №1</label>
           <img src="img/pittsburgh.jpg" class="img-thumbnail" width="100">
         </div>-->
-        <form action="POST">
-          <input type="radio" value="cat1" id="radio-1" name="radio">
-          <label for="radio-1">
-            <img src="img/pittsburgh.jpg" class="img-thumbnail" width="100">
+        
+      <form action="">
+        <div class="form-group" data-toggle="buttons">
+          <label class="btn btn-default"><img src="img/pittsburgh.jpg" class="img-thumbnail img-check" width="100"><input type="radio" name="cat" value="val1" >
           </label>
-
-          <input type="radio" value="cat2" id="radio-2" name="radio">
-          <label for="radio-2">
-            <img src="img/fierenze.jpg" class="img-thumbnail" width="100">
-          </label>
-
-          <input type="radio" value="cat3" id="radio-3" name="radio">
-          <label for="radio-3">
-            <img src="img/sparkler.jpg" class="img-thumbnail" width="100">
-          </label>
-          <button type="submit" class="btn btn-success">Добавить</button>
-        </form>
+          <label class="btn btn-default"><img src="img/fierenze.jpg" class="img-thumbnail img-check" width="100"><input type="radio" name="cat" value="val2" ></label>
+          <label class="btn btn-default"><img src="img/sparkler.jpg" class="img-thumbnail img-check" width="100"><input type="radio" name="cat" value="val3" ></label>
+        </div>
+        <button type="submit" class="btn btn-success">Изменить фото</button>
+      </form>
 
 
       </div>

@@ -89,3 +89,12 @@ loadJSON(function(response) {
 
 });
 
+
+$('body').on('click', '.btn.active', function(e){
+    e.stopImmediatePropagation();
+    e.preventDefault();
+    //console.log(this, $('input:radio[name="options"]', this));
+    $(this).removeClass('active');
+    $('input:radio[name="cat"]', this).prop('checked', false);
+});
+
