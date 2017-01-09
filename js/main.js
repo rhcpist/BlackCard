@@ -38,6 +38,7 @@ loadJSON(function(response) {
         document.querySelector("#img1 > image").setAttribute("width", obj1.width);
         document.querySelector("#img1 > image").setAttribute("height", obj1.height);
         document.querySelector("#img1 > image").setAttribute("xlink:href", obj1.image);
+        document.querySelector('.card-image > button[data-rel="0"] > img').setAttribute("src", obj1.image);
     }
     
 
@@ -56,6 +57,7 @@ loadJSON(function(response) {
         document.querySelector("#img2 > image").setAttribute("width", obj2.width);
         document.querySelector("#img2 > image").setAttribute("height", obj2.height);
         document.querySelector("#img2 > image").setAttribute("xlink:href", obj2.image);
+        document.querySelector('.card-image > button[data-rel="1"] > img').setAttribute("src", obj2.image);
     }
     
 
@@ -74,6 +76,7 @@ loadJSON(function(response) {
         document.querySelector("#img3 > image").setAttribute("width", obj3.width);
         document.querySelector("#img3 > image").setAttribute("height", obj3.height);
         document.querySelector("#img3 > image").setAttribute("xlink:href", obj3.image);
+        document.querySelector('.card-image > button[data-rel="2"] > img').setAttribute("src", obj3.image);
     }
 
     // Load data from json to Category #4
@@ -91,6 +94,7 @@ loadJSON(function(response) {
         document.querySelector("#img4 > image").setAttribute("width", obj4.width);
         document.querySelector("#img4 > image").setAttribute("height", obj4.height);
         document.querySelector("#img4 > image").setAttribute("xlink:href", obj4.image);
+        document.querySelector('.card-image > button[data-rel="3"] > img').setAttribute("src", obj4.image);
     }
 
     // Load data from json to Category #5
@@ -108,6 +112,7 @@ loadJSON(function(response) {
         document.querySelector("#img5 > image").setAttribute("width", obj5.width);
         document.querySelector("#img5 > image").setAttribute("height", obj5.height);
         document.querySelector("#img5 > image").setAttribute("xlink:href", obj5.image);
+        //document.querySelector('.card-image > button[data-rel="4"] > img').setAttribute("src", obj5.image);
     }
 
     // Load data from json to Category #6
@@ -125,6 +130,7 @@ loadJSON(function(response) {
         document.querySelector("#img6 > image").setAttribute("width", obj6.width);
         document.querySelector("#img6 > image").setAttribute("height", obj6.height);
         document.querySelector("#img6 > image").setAttribute("xlink:href", obj6.image);
+        //document.querySelector('.card-image > button[data-rel="5"] > img').setAttribute("src", obj6.image);
     }
 
     // Load data from json to Category #7
@@ -142,6 +148,7 @@ loadJSON(function(response) {
         document.querySelector("#img7 > image").setAttribute("width", obj7.width);
         document.querySelector("#img7 > image").setAttribute("height", obj7.height);
         document.querySelector("#img7 > image").setAttribute("xlink:href", obj7.image);
+        //document.querySelector('.card-image > button[data-rel="6"] > img').setAttribute("src", obj7.image);
     }
 
     // Load data from json to Category #8
@@ -159,6 +166,7 @@ loadJSON(function(response) {
         document.querySelector("#img8 > image").setAttribute("width", obj8.width);
         document.querySelector("#img8 > image").setAttribute("height", obj8.height);
         document.querySelector("#img8 > image").setAttribute("xlink:href", obj8.image);
+        //document.querySelector('.card-image > button[data-rel="7"] > img').setAttribute("src", obj8.image);
     }
 
     // Load data from json to Center Circle
@@ -343,3 +351,23 @@ function setDataToLocalStorage() {
     localStorage.setItem("cat7", serialCat7);
     localStorage.setItem("cat8", serialCat8);
 }
+
+function encodeImageFileAsURL(img) {
+
+    var filesSelected = document.getElementById("inputFileToLoad" + img).files;
+    if (filesSelected.length > 0) {
+      var fileToLoad = filesSelected[0];
+
+      var fileReader = new FileReader();
+
+      fileReader.onload = function(fileLoadedEvent) {
+        var srcData = fileLoadedEvent.target.result; // base64 data
+        document.querySelector("#img" + img + " > image").setAttribute("xlink:href", srcData);
+
+        //document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+        //alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
+        //console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
+      }
+      fileReader.readAsDataURL(fileToLoad);
+    }
+  }
