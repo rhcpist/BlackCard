@@ -365,10 +365,9 @@ function encodeImageFileAsURL(img) {
         var data_rel = img-1;
         document.querySelector("#img" + img + " > image").setAttribute("xlink:href", srcData);
         document.querySelector('.card-image > button[data-rel="' + data_rel + '"] > img').setAttribute("src", srcData);
-        //document.getElementById("imgTest").innerHTML = newImage.outerHTML;
-        //alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
-        //console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
       }
       fileReader.readAsDataURL(fileToLoad);
     }
   }
+
+  //var _lsTotal=0,_xLen,_x;for(_x in localStorage){_xLen= ((localStorage[_x].length + _x.length)* 2);_lsTotal+=_xLen; console.log(_x.substr(0,50)+" = "+ (_xLen/1024).toFixed(2)+" KB")};console.log("Total = " + (_lsTotal / 1024).toFixed(2) + " KB");
