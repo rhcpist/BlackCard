@@ -362,8 +362,9 @@ function encodeImageFileAsURL(img) {
 
       fileReader.onload = function(fileLoadedEvent) {
         var srcData = fileLoadedEvent.target.result; // base64 data
+        var data_rel = img-1;
         document.querySelector("#img" + img + " > image").setAttribute("xlink:href", srcData);
-
+        document.querySelector('.card-image > button[data-rel="' + data_rel + '"] > img').setAttribute("src", srcData);
         //document.getElementById("imgTest").innerHTML = newImage.outerHTML;
         //alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
         //console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
