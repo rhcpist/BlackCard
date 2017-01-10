@@ -112,7 +112,7 @@ loadJSON(function(response) {
         document.querySelector("#img5 > image").setAttribute("width", obj5.width);
         document.querySelector("#img5 > image").setAttribute("height", obj5.height);
         document.querySelector("#img5 > image").setAttribute("xlink:href", obj5.image);
-        //document.querySelector('.card-image > button[data-rel="4"] > img').setAttribute("src", obj5.image);
+        document.querySelector('.card-image > button[data-rel="4"] > img').setAttribute("src", obj5.image);
     }
 
     // Load data from json to Category #6
@@ -130,7 +130,7 @@ loadJSON(function(response) {
         document.querySelector("#img6 > image").setAttribute("width", obj6.width);
         document.querySelector("#img6 > image").setAttribute("height", obj6.height);
         document.querySelector("#img6 > image").setAttribute("xlink:href", obj6.image);
-        //document.querySelector('.card-image > button[data-rel="5"] > img').setAttribute("src", obj6.image);
+        document.querySelector('.card-image > button[data-rel="5"] > img').setAttribute("src", obj6.image);
     }
 
     // Load data from json to Category #7
@@ -148,7 +148,7 @@ loadJSON(function(response) {
         document.querySelector("#img7 > image").setAttribute("width", obj7.width);
         document.querySelector("#img7 > image").setAttribute("height", obj7.height);
         document.querySelector("#img7 > image").setAttribute("xlink:href", obj7.image);
-        //document.querySelector('.card-image > button[data-rel="6"] > img').setAttribute("src", obj7.image);
+        document.querySelector('.card-image > button[data-rel="6"] > img').setAttribute("src", obj7.image);
     }
 
     // Load data from json to Category #8
@@ -166,7 +166,7 @@ loadJSON(function(response) {
         document.querySelector("#img8 > image").setAttribute("width", obj8.width);
         document.querySelector("#img8 > image").setAttribute("height", obj8.height);
         document.querySelector("#img8 > image").setAttribute("xlink:href", obj8.image);
-        //document.querySelector('.card-image > button[data-rel="7"] > img').setAttribute("src", obj8.image);
+        document.querySelector('.card-image > button[data-rel="7"] > img').setAttribute("src", obj8.image);
     }
 
     // Load data from json to Center Circle
