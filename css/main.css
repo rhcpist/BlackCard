@@ -1,18 +1,15 @@
-
-
 /* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+    Custom author styles
+========================================================================== */
 
-
-.svg-container { 
+/*.svg-container { 
 	display: block;
-	position: relative;
+	margin: 0px auto;
 	width: 60%;
 	vertical-align: middle; 
 	overflow: hidden;
-  margin: 0px auto;
-}
+    position: relative;
+}*/
 
 .btn {         
   opacity: 1;       
@@ -20,7 +17,6 @@
 .btn.active {        
   opacity: 0.6;       
 }
-
 
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
