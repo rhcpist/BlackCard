@@ -89,10 +89,12 @@
           <div class="arrow-block">
             <a href="javascript:void(0);" role="button" onclick="upClick();"><i class="fa fa-arrow-up fa-2x" aria-hidden="true"></i></a>
             <a href="javascript:void(0);" role="button" onclick="downClick();"><i class="fa fa-arrow-down fa-2x" aria-hidden="true"></i></a>
+            <a href="javascript:void(0);" role="button" onclick="leftClick();"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
             <a href="javascript:void(0);" role="button" onclick="rightClick();"><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></a>
-            <a href="javascript:void(0);" role="button" onclick="leftClick();"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a><br><br>
+            <br><br>
             <a href="javascript:void(0);" role="button" onclick="zoomIn();"><i class="fa fa-search-plus fa-3x" aria-hidden="true"></i></a>
-            <a href="javascript:void(0);" role="button" onclick="zoomOut();"><i class="fa fa-search-minus fa-3x" aria-hidden="true"></i></a>
+            <a href="javascript:void(0);" role="button" onclick="zoomOut();"><i class="fa fa-search-minus fa-3x" aria-hidden="true"></i></a><br><br><br><br><br><br><br>
+            <a class="fa fa-arrow-right fa-2x" href="javascript:void(0);" role="button" onclick="console.log('Dali');"><span style="font-family: 'Fira Sans', sans-serif;">   ДАЛІ</span></a>
           </div>
         </div>
         
@@ -299,6 +301,11 @@
   .arrow-block a {
     margin: 0 10px;
     color:#F0F011;
+    text-decoration: none;
+  }
+
+  .arrow-block a span {
+
   }
 
   @media only screen and (max-width : 1200px) {
