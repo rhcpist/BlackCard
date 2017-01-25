@@ -13,6 +13,7 @@
       <link rel="stylesheet" href="css/bootstrap.min.css">
 
       <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="css/font-awesome.min.css">
       <!--<link rel="stylesheet" href="css/main.css">-->
       <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i" rel="stylesheet">
 
@@ -39,6 +40,7 @@
             <polygon points="300 300, 22.29 415.03, 22.29 184.97" stroke="#fff225" stroke-width="1" fill="url(#img7)"/>
             <polygon points="300 300, 22.29 184.97, 184.97 22.29" stroke="#fff225" stroke-width="1" fill="url(#img8)"/>
             <circle cx="300" cy="300" r="80" fill="url(#face)"/>
+            <circle cx="300" cy="300" r="80" fill="url(#myface)"/>
             <defs>
               <pattern id="img1" patternUnits="userSpaceOnUse" width="100%" height="100%">
                 <image xlink:href="" />
@@ -65,7 +67,10 @@
                 <image xlink:href="" />
               </pattern>
               <pattern id="face" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/sun.png" x="220" y="220"/>
+                <image xlink:href="img/sun.png" x="223" y="223"/>
+              </pattern>
+              <pattern id="myface" patternUnits="userSpaceOnUse" width="100%" height="100%">
+                <image xlink:href="" x="220" y="220"/>
               </pattern>
             </defs>
           </svg>
@@ -79,7 +84,16 @@
             <span>в центр</span><br>
             <span>Карти Мрій</span><br>
           </div>
-          <input class="btn" type="file" id="inputFileToLoad" title="ЗАВАНТАЖТЕ ФОТО" onchange="encodeImageFileAsURL();" />         
+          <input class="btn" type="file" id="inputFileToLoad" title="ЗАВАНТАЖТЕ ФОТО" onchange="encodeImageFileAsURL();" />
+
+          <div class="arrow-block">
+            <a href="javascript:void(0);" role="button" onclick="upClick();"><i class="fa fa-arrow-up fa-2x" aria-hidden="true"></i></a>
+            <a href="javascript:void(0);" role="button" onclick="downClick();"><i class="fa fa-arrow-down fa-2x" aria-hidden="true"></i></a>
+            <a href="javascript:void(0);" role="button" onclick="rightClick();"><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></a>
+            <a href="javascript:void(0);" role="button" onclick="leftClick();"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a><br><br>
+            <a href="javascript:void(0);" role="button" onclick="zoomIn();"><i class="fa fa-search-plus fa-3x" aria-hidden="true"></i></a>
+            <a href="javascript:void(0);" role="button" onclick="zoomOut();"><i class="fa fa-search-minus fa-3x" aria-hidden="true"></i></a>
+          </div>
         </div>
         
       </div>
@@ -107,10 +121,80 @@
 
               fileReader.onload = function(fileLoadedEvent) {
                 var srcData = fileLoadedEvent.target.result; // base64 data
-                document.querySelector("#face > image").setAttribute("xlink:href", srcData);
+                document.querySelector("#myface > image").setAttribute("xlink:href", srcData);
+                document.getElementsByClassName("arrow-block")[0].style.display = "block";
+                document.querySelectorAll("circle")[1].setAttribute("stroke", "#fff225");
+                document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
               }
               fileReader.readAsDataURL(fileToLoad);
             }
+            else {
+               document.getElementsByClassName("arrow-block")[0].style.display = "none";
+               document.querySelector("#myface > image").setAttribute("xlink:href", "");
+               document.querySelectorAll("circle")[1].removeAttribute("stroke");
+               document.querySelectorAll("circle")[1].removeAttribute("stroke-width");
+
+
+            }
+          }
+
+          function leftClick() {
+              console.log("left click!");
+              var lx = document.querySelector("#myface > image").getAttribute("x");
+              document.querySelector("#myface > image").setAttribute("x", Number(lx)-4);
+          }
+
+          function rightClick() {
+              console.log("right click!");
+              var rx = document.querySelector("#myface > image").getAttribute("x");
+              document.querySelector("#myface > image").setAttribute("x", Number(rx)+4);
+          }
+
+          function upClick() {
+              console.log("up click!");
+              var uy = document.querySelector("#myface > image").getAttribute("y");
+              document.querySelector("#myface > image").setAttribute("y", Number(uy)-4);
+          }
+
+          function downClick() {
+              console.log("down click!");
+              var dy = document.querySelector("#myface > image").getAttribute("y");
+              document.querySelector("#myface > image").setAttribute("y", Number(dy)+4);
+          }
+
+          function zoomIn() {
+              /*var image = new Image();
+              image.src = document.querySelector("#face > image").getAttribute("xlink:href");
+              document.querySelector("#face > image").setAttribute("width", image.width+20);
+              document.querySelector("#face > image").setAttribute("height", image.height+20);
+              console.log(image.width + " - " + image.height);*/
+
+              var zoomIn = document.querySelector("#myface > image").getAttribute("width");
+              console.log(zoomIn);
+              if (zoomIn == null) {
+                var image = new Image();
+                image.src = document.querySelector("#myface > image").getAttribute("xlink:href");
+                document.querySelector("#myface > image").setAttribute("width", image.width+20);
+              }
+              else {
+                document.querySelector("#myface > image").setAttribute("width", Number(zoomIn)+20);
+                console.log(zoomIn);
+              }
+
+          }
+
+          function zoomOut() {
+              var zoomOut = document.querySelector("#myface > image").getAttribute("width");
+              console.log(zoomOut);
+              if (zoomOut == null) {
+                var image = new Image();
+                image.src = document.querySelector("#myface > image").getAttribute("xlink:href");
+                document.querySelector("#myface > image").setAttribute("width", image.width-20);
+              }
+              else {
+                document.querySelector("#myface > image").setAttribute("width", Number(zoomOut)-20);
+                console.log(zoomOut);
+              }  
           }
 
         </script>
@@ -135,7 +219,7 @@
 
   .alert-block {
     *border: 1px solid white;
-    width: 230px; 
+    width: 229px; 
     height: 500px; 
     display: inline-block; 
     text-align: center;
@@ -207,7 +291,15 @@
       background-color: #D9AB14;
   }
 
-  
+  .arrow-block {
+    margin: 15px;
+    display: none;
+  }
+
+  .arrow-block a {
+    margin: 0 10px;
+    color:#F0F011;
+  }
 
   @media only screen and (max-width : 1200px) {
 
