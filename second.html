@@ -94,7 +94,7 @@
             <br><br>
             <a href="javascript:void(0);" role="button" onclick="zoomIn();"><i class="fa fa-search-plus fa-3x" aria-hidden="true"></i></a>
             <a href="javascript:void(0);" role="button" onclick="zoomOut();"><i class="fa fa-search-minus fa-3x" aria-hidden="true"></i></a><br><br><br><br><br><br><br>
-            <a class="fa fa-arrow-right fa-2x" href="javascript:void(0);" role="button" onclick="console.log('Dali');"><span style="font-family: 'Fira Sans', sans-serif;">   ДАЛІ</span></a>
+            <a class="fa fa-arrow-right fa-2x" href="second.html" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif;">   ДАЛІ</span></a>
           </div>
         </div>
         
@@ -198,6 +198,44 @@
                 console.log(zoomOut);
               }  
           }
+
+
+          function setDataToLocalStorage() {
+              var cx = document.querySelector("#myface > image").getAttribute("x");
+              var cy = document.querySelector("#myface > image").getAttribute("y");
+              var width = document.querySelector("#myface > image").getAttribute("width");
+              var height = document.querySelector("#myface > image").getAttribute("height");
+              var href = document.querySelector("#myface > image").getAttribute("xlink:href");
+
+              
+              
+              var face = {
+                  image: href,
+                  pos_x : cx,
+                  pos_y : cy,
+                  width : width,
+                  height : height
+              };              
+               
+              var serialFace = JSON.stringify(face);
+              localStorage.setItem("face", serialFace);
+              //localStorage.clear();
+              
+          }
+
+          /*
+
+            var getLocalStorageSize = function() {
+                var total = 0;
+                for (var x in localStorage) {
+                    // Value is multiplied by 2 due to data being stored in `utf-16` format, which requires twice the space.
+                    var amount = (localStorage[x].length * 2) / 1024 / 1024;
+                    total += amount;
+                }
+                return total.toFixed(2);
+            };
+
+          */
 
         </script>
   </body>
@@ -341,3 +379,4 @@
   }
 
 </style>
+
