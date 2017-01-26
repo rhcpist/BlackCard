@@ -14,9 +14,9 @@
 
       <link rel="stylesheet" href="css/bootstrap-theme.min.css">
       <link rel="stylesheet" href="css/font-awesome.min.css">
+      <link href="css/jquery.bxslider.css" rel="stylesheet" />
       <!--<link rel="stylesheet" href="css/main.css">-->
       <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i" rel="stylesheet">
-
       <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
   </head>
   <body>
@@ -43,7 +43,7 @@
             <circle cx="300" cy="300" r="80" fill="url(#myface)"/>
             <defs>
               <pattern id="img1" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-1.png" x="245" y="35" width="18%"/>
+                <image xlink:href="img/icons-yellow/zerno-y-1.png" x="245" y="35" width="18%"/>
               </pattern>
               <pattern id="img2" patternUnits="userSpaceOnUse" width="100%" height="100%">
                 <image xlink:href="img/icons/zerno-2.png" x="406" y="105" width="18%"/>
@@ -77,14 +77,13 @@
         </div>
         <div class="alert-block">
           <div class="block-text" style="text-align: center;">
-            <span>Оберіть Ваше</span><br>
-            <span>улюблене фото</span><br>
-            <span>з галереї</span><br>
-            <span>та завантажте його</span><br>
-            <span>в центр</span><br>
-            <span>Карти Мрій</span><br>
+            <br><br>
+            <span>Оберіть Вашу</span><br>
+            <span>заповітну мрію,</span><br>
+            <span>натиснувши</span><br>
+            <span>на сектор</span><br>
           </div>
-          <input class="btn" type="file" id="inputFileToLoad" title="ЗАВАНТАЖТЕ ФОТО" onchange="encodeImageFileAsURL();" />
+          <!--<input class="btn" type="file" id="inputFileToLoad" title="ЗАВАНТАЖТЕ ФОТО" onchange="encodeImageFileAsURL();" />-->
 
           <div class="arrow-block">
             <a href="javascript:void(0);" role="button" onclick="upClick();"><i class="fa fa-arrow-up fa-2x" aria-hidden="true"></i></a>
@@ -94,27 +93,49 @@
             <br><br>
             <a href="javascript:void(0);" role="button" onclick="zoomIn();"><i class="fa fa-search-plus fa-3x" aria-hidden="true"></i></a>
             <a href="javascript:void(0);" role="button" onclick="zoomOut();"><i class="fa fa-search-minus fa-3x" aria-hidden="true"></i></a><br><br><br><br><br><br><br>
-            <a class="fa fa-arrow-right fa-2x" href="thirth.html" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif;">   ДАЛІ</span></a>
+            <a class="fa fa-arrow-right fa-2x" href="second.html" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif;">   ДАЛІ</span></a>
           </div>
         </div>
         
       </div>
       
-
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="bxslider">
+            <li><img src="img/impact.jpg" /></li>
+            <li><img src="img/cutting-dawn.jpg" /></li>
+            <li><img src="img/dontworry.jpg" /></li>
+            <li><img src="img/impact.jpg" /></li>
+            <li><img src="img/impact.jpg" /></li>
+            <li><img src="img/cutting-dawn.jpg" /></li>
+            <li><img src="img/dontworry.jpg" /></li>
+            <li><img src="img/impact.jpg" /></li>
+          </ul>
+        </div>
+      </div>
 
     </div> <!-- /container -->        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
         <script src="http://markusslima.github.io/bootstrap-filestyle/js/bootstrap-filestyle.min.js"> </script>
+        <script src="js/vendor/jquery.bxslider.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <!--<script src="js/main.js"></script>-->
         <script type="text/javascript">
           
-          $(function(){
+          /*$(function(){
             $(".btn").filestyle({input: false});
             $(".btn").filestyle('buttonText', 'ЗАВАНТАЖТЕ ФОТО');
+          });*/
+
+          $('.bxslider').bxSlider({
+            minSlides: 4,
+            maxSlides: 4,
+            slideWidth: 220,
+            slideMargin: 10
+
           });
 
-          function encodeImageFileAsURL() {
+          /*function encodeImageFileAsURL() {
             var filesSelected = document.getElementById("inputFileToLoad").files;
             if (filesSelected.length > 0) {
               var fileToLoad = filesSelected[0];
@@ -138,7 +159,17 @@
 
 
             }
-          }
+          }*/
+
+          var myface = JSON.parse(localStorage.getItem("face"));
+          document.querySelector("#myface > image").setAttribute("x", myface.pos_x);
+          document.querySelector("#myface > image").setAttribute("y", myface.pos_y);
+          document.querySelector("#myface > image").setAttribute("width", myface.width);
+          document.querySelector("#myface > image").setAttribute("height", myface.height);
+          document.querySelector("#myface > image").setAttribute("xlink:href", myface.image);
+
+          document.querySelectorAll("circle")[1].setAttribute("stroke", "#fff225");
+          document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
 
           function leftClick() {
               console.log("left click!");
@@ -172,11 +203,9 @@
                 var image = new Image();
                 image.src = document.querySelector("#myface > image").getAttribute("xlink:href");
                 document.querySelector("#myface > image").setAttribute("width", image.width+20);
-                document.querySelector("#myface > image").setAttribute("height", image.width+20);
               }
               else {
                 document.querySelector("#myface > image").setAttribute("width", Number(zoomIn)+20);
-                document.querySelector("#myface > image").setAttribute("height", Number(zoomIn)+20);
                 console.log(zoomIn);
               }
 
@@ -189,38 +218,13 @@
                 var image = new Image();
                 image.src = document.querySelector("#myface > image").getAttribute("xlink:href");
                 document.querySelector("#myface > image").setAttribute("width", image.width-20);
-                document.querySelector("#myface > image").setAttribute("height", image.height-20);
               }
               else {
                 document.querySelector("#myface > image").setAttribute("width", Number(zoomOut)-20);
-                document.querySelector("#myface > image").setAttribute("height", Number(zoomOut)-20);
                 console.log(zoomOut);
               }  
           }
 
-
-          function setDataToLocalStorage() {
-              var cx = document.querySelector("#myface > image").getAttribute("x");
-              var cy = document.querySelector("#myface > image").getAttribute("y");
-              var width = document.querySelector("#myface > image").getAttribute("width");
-              var height = document.querySelector("#myface > image").getAttribute("height");
-              var href = document.querySelector("#myface > image").getAttribute("xlink:href");
-
-              
-              
-              var face = {
-                  image: href,
-                  pos_x : cx,
-                  pos_y : cy,
-                  width : width,
-                  height : height
-              };              
-               
-              var serialFace = JSON.stringify(face);
-              localStorage.setItem("face", serialFace);
-              //localStorage.clear();
-              
-          }
 
           /*
 
@@ -243,13 +247,13 @@
 <style type="text/css">
 
   body {
-    background: #160002 url('img/bg-2.jpg') fixed no-repeat bottom left; 
+    background: #0f0100 url('img/bg-3.jpg') fixed no-repeat bottom left; 
     background-size: 87% auto;
   }
 
   .svg-container {
-    width: 80%; 
-    margin: 60px auto; 
+    width: 80%;
+    margin: 60px auto 20px;
     display: inline-block;
     vertical-align: middle; 
     overflow: hidden;
@@ -280,7 +284,7 @@
     border: solid 1px #fff225;
 
     position: absolute;
-    top: 12%;
+    top: 20%;
   }
 
   .block-text span {
@@ -353,17 +357,24 @@
 
     .svg-container {
       display: block;
-      margin: 200px 0px 0px 0px;
+      margin: 200px 0px -60px 0px;
       width: 100%;
     }
 
     .block-text {
       font-size: 24px;
       width: 100%;
+      height: 200px;
+
+    }
+
+    .block-text span {
+      top: -35px;
     }
 
     .alert-block {
       width: 100%;
+      height: 270px;
     }
 
     .first-page-font3 {
@@ -377,5 +388,20 @@
     }
   }
 
-</style>
+  .bx-wrapper .bx-viewport {
+    *box-shadow: 0 0 20px #fff225;
+    border: 5px solid rgba(255, 255, 255, 0);
+    background: none!important;
+    
 
+  }
+
+  .bx-wrapper img {
+    *border: 1px solid #fcee24;
+  }
+
+  .bx-wrapper .bx-pager.bx-default-pager a:hover, .bx-wrapper .bx-pager.bx-default-pager a.active {
+    background: #fdea00;
+}
+
+</style>
