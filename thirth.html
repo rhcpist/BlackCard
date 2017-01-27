@@ -54,28 +54,28 @@
             <circle cx="300" cy="300" r="80" fill="url(#myface)"/>
             <defs>
               <pattern id="img1" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons-yellow/zerno-y-1.png" x="245" y="35" width="18%"/>
+                <image xlink:href="img/icons-yellow/zerno-y-1.png" x="245" y="35" width="108"/>
               </pattern>
               <pattern id="img2" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-2.png" x="406" y="105" width="18%"/>
+                <image xlink:href="img/icons/zerno-2.png" x="406" y="105" width="108"/>
               </pattern>
               <pattern id="img3" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-3.png" x="455" y="262" width="18%" />
+                <image xlink:href="img/icons/zerno-3.png" x="455" y="262" width="108" />
               </pattern>
                <pattern id="img4" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-4.png" x="406" y="410" width="18%" />
+                <image xlink:href="img/icons/zerno-4.png" x="406" y="410" width="108" />
               </pattern>
               <pattern id="img5" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-5.png" x="245" y="487" width="18%" />
+                <image xlink:href="img/icons/zerno-5.png" x="245" y="487" width="108" />
               </pattern>
               <pattern id="img6" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-6.png" x="90" y="410" width="18%" />
+                <image xlink:href="img/icons/zerno-6.png" x="90" y="410" width="108" />
               </pattern>
               <pattern id="img7" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-7.png" x="40" y="262" width="18%" />
+                <image xlink:href="img/icons/zerno-7.png" x="40" y="262" width="108" />
               </pattern>
               <pattern id="img8" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-8.png" x="88" y="114" width="18%" />
+                <image xlink:href="img/icons/zerno-8.png" x="88" y="114" width="108" />
               </pattern>
               <pattern id="face" patternUnits="userSpaceOnUse" width="100%" height="100%">
                 <image xlink:href="img/sun.png" x="223" y="223"/>
@@ -157,7 +157,7 @@
 
             
 
-          /*function encodeImageFileAsURL() {
+          function encodeImageFileAsURL() {
             var filesSelected = document.getElementById("inputFileToLoad").files;
             if (filesSelected.length > 0) {
               var fileToLoad = filesSelected[0];
@@ -166,22 +166,21 @@
 
               fileReader.onload = function(fileLoadedEvent) {
                 var srcData = fileLoadedEvent.target.result; // base64 data
-                document.querySelector("#myface > image").setAttribute("xlink:href", srcData);
+                document.querySelector("#img1 > image").setAttribute("width", "400");
+                document.querySelector("#img1 > image").setAttribute("xlink:href", srcData);
                 document.getElementsByClassName("arrow-block")[0].style.display = "block";
-                document.querySelectorAll("circle")[1].setAttribute("stroke", "#fff225");
-                document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
               }
               fileReader.readAsDataURL(fileToLoad);
             }
             else {
                document.getElementsByClassName("arrow-block")[0].style.display = "none";
-               document.querySelector("#myface > image").setAttribute("xlink:href", "");
-               document.querySelectorAll("circle")[1].removeAttribute("stroke");
-               document.querySelectorAll("circle")[1].removeAttribute("stroke-width");
-
+               document.querySelector("#img1 > image").setAttribute("xlink:href", "img/icons-yellow/zerno-y-1.png");
+               document.querySelector("#img1 > image").setAttribute("width", "108");
+               document.querySelector("#img1 > image").setAttribute("x", "245");
+               document.querySelector("#img1 > image").setAttribute("y", "35");
 
             }
-          }*/
+          }
 
           var myface = JSON.parse(localStorage.getItem("face"));
           document.querySelector("#myface > image").setAttribute("x", myface.pos_x);
@@ -195,54 +194,54 @@
 
           function leftClick() {
               console.log("left click!");
-              var lx = document.querySelector("#myface > image").getAttribute("x");
-              document.querySelector("#myface > image").setAttribute("x", Number(lx)-4);
+              var lx = document.querySelector("#img1 > image").getAttribute("x");
+              document.querySelector("#img1 > image").setAttribute("x", Number(lx)-4);
           }
 
           function rightClick() {
               console.log("right click!");
-              var rx = document.querySelector("#myface > image").getAttribute("x");
-              document.querySelector("#myface > image").setAttribute("x", Number(rx)+4);
+              var rx = document.querySelector("#img1 > image").getAttribute("x");
+              document.querySelector("#img1 > image").setAttribute("x", Number(rx)+4);
           }
 
           function upClick() {
               console.log("up click!");
-              var uy = document.querySelector("#myface > image").getAttribute("y");
-              document.querySelector("#myface > image").setAttribute("y", Number(uy)-4);
+              var uy = document.querySelector("#img1 > image").getAttribute("y");
+              document.querySelector("#img1 > image").setAttribute("y", Number(uy)-4);
           }
 
           function downClick() {
               console.log("down click!");
-              var dy = document.querySelector("#myface > image").getAttribute("y");
-              document.querySelector("#myface > image").setAttribute("y", Number(dy)+4);
+              var dy = document.querySelector("#img1 > image").getAttribute("y");
+              document.querySelector("#img1 > image").setAttribute("y", Number(dy)+4);
           }
 
           function zoomIn() {
 
-              var zoomIn = document.querySelector("#myface > image").getAttribute("width");
+              var zoomIn = document.querySelector("#img1 > image").getAttribute("width");
               console.log(zoomIn);
               if (zoomIn == null) {
                 var image = new Image();
-                image.src = document.querySelector("#myface > image").getAttribute("xlink:href");
-                document.querySelector("#myface > image").setAttribute("width", image.width+20);
+                image.src = document.querySelector("#img1 > image").getAttribute("xlink:href");
+                document.querySelector("#img1 > image").setAttribute("width", image.width+20);
               }
               else {
-                document.querySelector("#myface > image").setAttribute("width", Number(zoomIn)+20);
+                document.querySelector("#img1 > image").setAttribute("width", Number(zoomIn)+20);
                 console.log(zoomIn);
               }
 
           }
 
           function zoomOut() {
-              var zoomOut = document.querySelector("#myface > image").getAttribute("width");
+              var zoomOut = document.querySelector("#img1 > image").getAttribute("width");
               console.log(zoomOut);
               if (zoomOut == null) {
                 var image = new Image();
-                image.src = document.querySelector("#myface > image").getAttribute("xlink:href");
-                document.querySelector("#myface > image").setAttribute("width", image.width-20);
+                image.src = document.querySelector("#img1 > image").getAttribute("xlink:href");
+                document.querySelector("#img1 > image").setAttribute("width", image.width-20);
               }
               else {
-                document.querySelector("#myface > image").setAttribute("width", Number(zoomOut)-20);
+                document.querySelector("#img1 > image").setAttribute("width", Number(zoomOut)-20);
                 console.log(zoomOut);
               }  
           }
@@ -449,7 +448,7 @@
   }
 
   .bx-wrapper img {
-    *border: 1px solid #fcee24;
+    cursor: pointer;
   }
 
   .bx-wrapper .bx-pager.bx-default-pager a:hover, .bx-wrapper .bx-pager.bx-default-pager a.active {
