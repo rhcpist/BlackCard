@@ -112,13 +112,13 @@
             <br><br>
             <a href="javascript:void(0);" role="button" onclick="zoomIn();"><i class="fa fa-search-plus fa-3x" aria-hidden="true"></i></a>
             <a href="javascript:void(0);" role="button" onclick="zoomOut();"><i class="fa fa-search-minus fa-3x" aria-hidden="true"></i></a><br><br><br><br><br><br><br>
-            <a class="fa fa-arrow-right fa-2x" href="second.html" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif;">   ДАЛІ</span></a>
-            <a class="fa fa-arrow-left fa-2x" href="#" role="button" onclick="prevStep();"><span style="font-family: 'Fira Sans', sans-serif;">   НАЗАД</span></a>
+            <a class="fa fa-camera-retro fa-2x" href="#" role="button" onclick="prevStep();"><span style="font-family: 'Fira Sans', sans-serif;">   ЗМІНИТИ ФОТО</span></a>
           </div>
         </div>
         
       </div>
-      
+      <a class="fa fa-arrow-right fa-2x next" href="second.html" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif; float: right;">ДАЛІ</span></a>
+      <a class="fa fa-arrow-left fa-2x prev" href="second.html" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif; float: right;">НАЗАД</span></a>
 
 
     </div> <!-- /container -->        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
@@ -312,6 +312,25 @@
     background-size: 100% auto;
   }
 
+  .prev {
+    color: #F0F011;
+    text-decoration: none; 
+    float: left; 
+    margin-left: 90px;
+  }
+
+  .next {
+    color: #F0F011;
+    text-decoration: none; 
+    float: right; 
+    margin-right: 90px;
+  }
+
+  .next:hover, .prev:hover, .next:active, .prev:active {
+    color: #F0F011;
+    text-decoration: none;
+  }
+
   .svg-container {
     width: 58%;
     margin: 60px auto 20px;
@@ -329,7 +348,7 @@
     text-align: center;
     vertical-align: middle;
     position: relative;
-    top: -150px;
+    top: -175px;
   }
 
   .left-block {
@@ -466,6 +485,13 @@
       margin-right: 0px!important;
       display: block;
       width: 100%;
+    }
+
+    .prev {
+      margin: 40px 0px 40px 5px;
+    }
+    .next {
+      margin: 40px 5px 40px 0px;
     }
   }
 

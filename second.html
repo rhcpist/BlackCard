@@ -203,7 +203,17 @@
               var cx = document.querySelector("#myface > image").getAttribute("x");
               var cy = document.querySelector("#myface > image").getAttribute("y");
               var width = document.querySelector("#myface > image").getAttribute("width");
+              if (width == null) {
+                var image = new Image();
+                image.src = document.querySelector("#myface > image").getAttribute("xlink:href");
+                width = image.width;
+              }
               var height = document.querySelector("#myface > image").getAttribute("height");
+              if (height == null) {
+                var image = new Image();
+                image.src = document.querySelector("#myface > image").getAttribute("xlink:href");
+                height = image.height;
+              }
               var href = document.querySelector("#myface > image").getAttribute("xlink:href");
 
               
