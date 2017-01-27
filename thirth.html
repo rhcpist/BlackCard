@@ -92,14 +92,14 @@
 
            <h1 class="capture-text">ОБЕРІТЬ ФОТО</h1>
             <ul class="bxslider" style="padding: 0;">
-              <li><img src="img/impact.jpg" /></li>
-              <li><img src="img/cutting-dawn.jpg" /></li>
-              <li><img src="img/dontworry.jpg" /></li>
-              <li><img src="img/impact.jpg" /></li>
-              <li><img src="img/impact.jpg" /></li>
-              <li><img src="img/cutting-dawn.jpg" /></li>
-              <li><img src="img/dontworry.jpg" /></li>
-              <li><img src="img/impact.jpg" /></li>
+              <li><img id="gal1-img1" onclick="clickeOnImg(1);" src="img/impact.jpg" /></li>
+              <li><img id="gal1-img2" onclick="clickeOnImg(2);" src="img/cutting-dawn.jpg" /></li>
+              <li><img id="gal1-img3" onclick="clickeOnImg(3);" src="img/dontworry.jpg" /></li>
+              <li><img id="gal1-img4" onclick="clickeOnImg(4);" src="img/impact.jpg" /></li>
+              <li><img id="gal1-img5" onclick="clickeOnImg(5);" src="img/impact.jpg" /></li>
+              <li><img id="gal1-img6" onclick="clickeOnImg(6);" src="img/cutting-dawn.jpg" /></li>
+              <li><img id="gal1-img7" onclick="clickeOnImg(7);" src="img/dontworry.jpg" /></li>
+              <li><img id="gal1-img8" onclick="clickeOnImg(8);" src="img/impact.jpg" /></li>
             </ul>
             <h1 class="capture-text">АБО</h1>
           <input class="btn" type="file" id="inputFileToLoad" title="Оберіть з галереї" onchange="encodeImageFileAsURL();" />
@@ -113,6 +113,7 @@
             <a href="javascript:void(0);" role="button" onclick="zoomIn();"><i class="fa fa-search-plus fa-3x" aria-hidden="true"></i></a>
             <a href="javascript:void(0);" role="button" onclick="zoomOut();"><i class="fa fa-search-minus fa-3x" aria-hidden="true"></i></a><br><br><br><br><br><br><br>
             <a class="fa fa-arrow-right fa-2x" href="second.html" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif;">   ДАЛІ</span></a>
+            <a class="fa fa-arrow-left fa-2x" href="#" role="button" onclick="prevStep();"><span style="font-family: 'Fira Sans', sans-serif;">   НАЗАД</span></a>
           </div>
         </div>
         
@@ -155,6 +156,39 @@
              $(".left-block").css("display", "none");
           }
 
+          function prevStep() {
+            console.log("prevStep");
+            document.getElementsByClassName("arrow-block")[0].style.display = "none";
+            document.querySelector("#img1 > image").setAttribute("xlink:href", "img/icons-yellow/zerno-y-1.png");
+            document.querySelector("#img1 > image").setAttribute("width", "108");
+            document.querySelector("#img1 > image").setAttribute("x", "245");
+            document.querySelector("#img1 > image").setAttribute("y", "35");
+            document.getElementsByClassName("bx-wrapper")[0].style.display = "block";
+            document.getElementsByClassName("alert-block")[0].style.top = "-150px";
+            document.getElementsByClassName("capture-text")[0].style.display = "block";
+            document.getElementsByClassName("capture-text")[1].style.display = "block";
+            document.getElementsByClassName("bootstrap-filestyle")[0].style.display = "block";
+            $(".btn").filestyle('clear');
+
+          }
+
+          function clickeOnImg(num) {
+            console.log('Choosen!' + num);
+            var href = document.querySelector("#gal1-img" + num).getAttribute("src");
+            document.querySelector("#img1 > image").setAttribute("width", "400");
+            document.querySelector("#img1 > image").setAttribute("xlink:href", href);
+            document.querySelector("#img1 > image").setAttribute("x", "35");
+            document.querySelector("#img1 > image").setAttribute("y", "0");
+            document.getElementsByClassName("arrow-block")[0].style.display = "block";
+            document.getElementsByClassName("bx-wrapper")[0].style.display = "none";
+            document.getElementsByClassName("alert-block")[0].style.top = "90px";
+            document.getElementsByClassName("capture-text")[0].style.display = "none";
+            document.getElementsByClassName("capture-text")[1].style.display = "none";
+            document.getElementsByClassName("bootstrap-filestyle")[0].style.display = "none";
+            
+            $(".btn").filestyle('clear');
+            
+          }
             
 
           function encodeImageFileAsURL() {
@@ -168,16 +202,22 @@
                 var srcData = fileLoadedEvent.target.result; // base64 data
                 document.querySelector("#img1 > image").setAttribute("width", "400");
                 document.querySelector("#img1 > image").setAttribute("xlink:href", srcData);
+                document.querySelector("#img1 > image").setAttribute("x", "35");
+                document.querySelector("#img1 > image").setAttribute("y", "0");
                 document.getElementsByClassName("arrow-block")[0].style.display = "block";
+
+                /************ Убираем слайдер к херам при выборе картинки с компа *************/
+                document.getElementsByClassName("capture-text")[0].style.display = "none";
+                document.getElementsByClassName("capture-text")[1].style.display = "none";
+                document.getElementsByClassName("bx-wrapper")[0].style.display = "none";
+                document.getElementsByClassName("alert-block")[0].style.top = "90px"; 
+                document.getElementsByClassName("bootstrap-filestyle")[0].style.display = "none";
+                /******************************************************************************/
               }
               fileReader.readAsDataURL(fileToLoad);
             }
             else {
-               document.getElementsByClassName("arrow-block")[0].style.display = "none";
-               document.querySelector("#img1 > image").setAttribute("xlink:href", "img/icons-yellow/zerno-y-1.png");
-               document.querySelector("#img1 > image").setAttribute("width", "108");
-               document.querySelector("#img1 > image").setAttribute("x", "245");
-               document.querySelector("#img1 > image").setAttribute("y", "35");
+               
 
             }
           }
