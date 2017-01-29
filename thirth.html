@@ -54,28 +54,28 @@
             <circle cx="300" cy="300" r="80" fill="url(#myface)"/>
             <defs>
               <pattern id="img1" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons-yellow/zerno-y-1.png" x="245" y="35" width="108"/>
+                <image xlink:href="img/icons/zerno-1.png" x="245" y="35" width="108" heigth="78" />
               </pattern>
               <pattern id="img2" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-2.png" x="406" y="105" width="108"/>
+                <image xlink:href="img/icons/zerno-2.png" x="406" y="105" width="108" heigth="78" />
               </pattern>
               <pattern id="img3" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-3.png" x="455" y="262" width="108" />
+                <image xlink:href="img/icons/zerno-3.png" x="455" y="262" width="108" heigth="78" />
               </pattern>
                <pattern id="img4" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-4.png" x="406" y="410" width="108" />
+                <image xlink:href="img/icons/zerno-4.png" x="406" y="410" width="108" heigth="78" />
               </pattern>
               <pattern id="img5" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-5.png" x="245" y="487" width="108" />
+                <image xlink:href="img/icons/zerno-5.png" x="245" y="487" width="108" heigth="78" />
               </pattern>
               <pattern id="img6" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-6.png" x="90" y="410" width="108" />
+                <image xlink:href="img/icons/zerno-6.png" x="90" y="410" width="108" heigth="78" />
               </pattern>
               <pattern id="img7" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-7.png" x="40" y="262" width="108" />
+                <image xlink:href="img/icons/zerno-7.png" x="40" y="262" width="108" heigth="78" />
               </pattern>
               <pattern id="img8" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                <image xlink:href="img/icons/zerno-8.png" x="88" y="114" width="108" />
+                <image xlink:href="img/icons/zerno-8.png" x="88" y="114" width="108" heigth="78" />
               </pattern>
               <pattern id="face" patternUnits="userSpaceOnUse" width="100%" height="100%">
                 <image xlink:href="img/sun.png" x="223" y="223"/>
@@ -92,14 +92,14 @@
 
            <h1 class="capture-text">ОБЕРІТЬ ФОТО</h1>
             <ul class="bxslider" style="padding: 0;">
-              <li><img id="gal1-img1" onclick="clickeOnImg(1);" src="img/impact.jpg" /></li>
-              <li><img id="gal1-img2" onclick="clickeOnImg(2);" src="img/cutting-dawn.jpg" /></li>
-              <li><img id="gal1-img3" onclick="clickeOnImg(3);" src="img/dontworry.jpg" /></li>
-              <li><img id="gal1-img4" onclick="clickeOnImg(4);" src="img/impact.jpg" /></li>
-              <li><img id="gal1-img5" onclick="clickeOnImg(5);" src="img/impact.jpg" /></li>
-              <li><img id="gal1-img6" onclick="clickeOnImg(6);" src="img/cutting-dawn.jpg" /></li>
-              <li><img id="gal1-img7" onclick="clickeOnImg(7);" src="img/dontworry.jpg" /></li>
-              <li><img id="gal1-img8" onclick="clickeOnImg(8);" src="img/impact.jpg" /></li>
+              <li><img onclick="clickeOnImg(1);" /></li>
+              <li><img onclick="clickeOnImg(2);" /></li>
+              <li><img onclick="clickeOnImg(3);" /></li>
+              <li><img onclick="clickeOnImg(4);" /></li>
+              <li><img onclick="clickeOnImg(5);" /></li>
+              <li><img onclick="clickeOnImg(6);" /></li>
+              <li><img onclick="clickeOnImg(7);" /></li>
+              <li><img onclick="clickeOnImg(8);" /></li>
             </ul>
             <h1 class="capture-text">АБО</h1>
           <input class="btn" type="file" id="inputFileToLoad" title="Оберіть з галереї" onchange="encodeImageFileAsURL();" />
@@ -117,191 +117,16 @@
         </div>
         
       </div>
-      <a class="fa fa-arrow-right fa-2x next" href="second.html" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif; float: right;">ДАЛІ</span></a>
-      <a class="fa fa-arrow-left fa-2x prev" href="second.html" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif; float: right;">НАЗАД</span></a>
+      <a class="fa fa-arrow-right fa-2x next" href="" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif; float: right;">ДАЛІ</span></a>
+      <a class="fa fa-arrow-left fa-2x prev" href="" role="button" onclick="stepBack();"><span style="font-family: 'Fira Sans', sans-serif; float: right;">НАЗАД</span></a>
 
 
     </div> <!-- /container -->        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
         <script src="http://markusslima.github.io/bootstrap-filestyle/js/bootstrap-filestyle.min.js"> </script>
-        <script src="js/vendor/jquery.bxslider.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
-        <!--<script src="js/main.js"></script>-->
-        <script type="text/javascript">
-          
-          $(function(){
-            $(".btn").filestyle({input: false});
-            $(".btn").filestyle('buttonText', 'ОБЕРІТЬ З ГАЛЕРЕЇ');
-          });
-
-          var slider = $('.bxslider').bxSlider({
-            mode: 'vertical',
-            minSlides: 4,
-            maxSlides: 4,
-            slideWidth: 220,
-            slideMargin: 10,
-
-          });
-
-
-          if ($(document).width() < 1200) {
-             slider.reloadSlider({
-              mode: 'horizontal',
-              minSlides: 4,
-              maxSlides: 4,
-              slideWidth: 220,
-              slideMargin: 10
-            });
-
-             $(".left-block").css("display", "none");
-          }
-
-          function prevStep() {
-            console.log("prevStep");
-            document.getElementsByClassName("arrow-block")[0].style.display = "none";
-            document.querySelector("#img1 > image").setAttribute("xlink:href", "img/icons-yellow/zerno-y-1.png");
-            document.querySelector("#img1 > image").setAttribute("width", "108");
-            document.querySelector("#img1 > image").setAttribute("x", "245");
-            document.querySelector("#img1 > image").setAttribute("y", "35");
-            document.getElementsByClassName("bx-wrapper")[0].style.display = "block";
-            document.getElementsByClassName("alert-block")[0].style.top = "-150px";
-            document.getElementsByClassName("capture-text")[0].style.display = "block";
-            document.getElementsByClassName("capture-text")[1].style.display = "block";
-            document.getElementsByClassName("bootstrap-filestyle")[0].style.display = "block";
-            $(".btn").filestyle('clear');
-
-          }
-
-          function clickeOnImg(num) {
-            console.log('Choosen!' + num);
-            var href = document.querySelector("#gal1-img" + num).getAttribute("src");
-            document.querySelector("#img1 > image").setAttribute("width", "400");
-            document.querySelector("#img1 > image").setAttribute("xlink:href", href);
-            document.querySelector("#img1 > image").setAttribute("x", "35");
-            document.querySelector("#img1 > image").setAttribute("y", "0");
-            document.getElementsByClassName("arrow-block")[0].style.display = "block";
-            document.getElementsByClassName("bx-wrapper")[0].style.display = "none";
-            document.getElementsByClassName("alert-block")[0].style.top = "90px";
-            document.getElementsByClassName("capture-text")[0].style.display = "none";
-            document.getElementsByClassName("capture-text")[1].style.display = "none";
-            document.getElementsByClassName("bootstrap-filestyle")[0].style.display = "none";
-            
-            $(".btn").filestyle('clear');
-            
-          }
-            
-
-          function encodeImageFileAsURL() {
-            var filesSelected = document.getElementById("inputFileToLoad").files;
-            if (filesSelected.length > 0) {
-              var fileToLoad = filesSelected[0];
-
-              var fileReader = new FileReader();
-
-              fileReader.onload = function(fileLoadedEvent) {
-                var srcData = fileLoadedEvent.target.result; // base64 data
-                document.querySelector("#img1 > image").setAttribute("width", "400");
-                document.querySelector("#img1 > image").setAttribute("xlink:href", srcData);
-                document.querySelector("#img1 > image").setAttribute("x", "35");
-                document.querySelector("#img1 > image").setAttribute("y", "0");
-                document.getElementsByClassName("arrow-block")[0].style.display = "block";
-
-                /************ Убираем слайдер к херам при выборе картинки с компа *************/
-                document.getElementsByClassName("capture-text")[0].style.display = "none";
-                document.getElementsByClassName("capture-text")[1].style.display = "none";
-                document.getElementsByClassName("bx-wrapper")[0].style.display = "none";
-                document.getElementsByClassName("alert-block")[0].style.top = "90px"; 
-                document.getElementsByClassName("bootstrap-filestyle")[0].style.display = "none";
-                /******************************************************************************/
-              }
-              fileReader.readAsDataURL(fileToLoad);
-            }
-            else {
-               
-
-            }
-          }
-
-          var myface = JSON.parse(localStorage.getItem("face"));
-          document.querySelector("#myface > image").setAttribute("x", myface.pos_x);
-          document.querySelector("#myface > image").setAttribute("y", myface.pos_y);
-          document.querySelector("#myface > image").setAttribute("width", myface.width);
-          document.querySelector("#myface > image").setAttribute("height", myface.height);
-          document.querySelector("#myface > image").setAttribute("xlink:href", myface.image);
-
-          document.querySelectorAll("circle")[1].setAttribute("stroke", "#fff225");
-          document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
-
-          function leftClick() {
-              console.log("left click!");
-              var lx = document.querySelector("#img1 > image").getAttribute("x");
-              document.querySelector("#img1 > image").setAttribute("x", Number(lx)-4);
-          }
-
-          function rightClick() {
-              console.log("right click!");
-              var rx = document.querySelector("#img1 > image").getAttribute("x");
-              document.querySelector("#img1 > image").setAttribute("x", Number(rx)+4);
-          }
-
-          function upClick() {
-              console.log("up click!");
-              var uy = document.querySelector("#img1 > image").getAttribute("y");
-              document.querySelector("#img1 > image").setAttribute("y", Number(uy)-4);
-          }
-
-          function downClick() {
-              console.log("down click!");
-              var dy = document.querySelector("#img1 > image").getAttribute("y");
-              document.querySelector("#img1 > image").setAttribute("y", Number(dy)+4);
-          }
-
-          function zoomIn() {
-
-              var zoomIn = document.querySelector("#img1 > image").getAttribute("width");
-              console.log(zoomIn);
-              if (zoomIn == null) {
-                var image = new Image();
-                image.src = document.querySelector("#img1 > image").getAttribute("xlink:href");
-                document.querySelector("#img1 > image").setAttribute("width", image.width+20);
-              }
-              else {
-                document.querySelector("#img1 > image").setAttribute("width", Number(zoomIn)+20);
-                console.log(zoomIn);
-              }
-
-          }
-
-          function zoomOut() {
-              var zoomOut = document.querySelector("#img1 > image").getAttribute("width");
-              console.log(zoomOut);
-              if (zoomOut == null) {
-                var image = new Image();
-                image.src = document.querySelector("#img1 > image").getAttribute("xlink:href");
-                document.querySelector("#img1 > image").setAttribute("width", image.width-20);
-              }
-              else {
-                document.querySelector("#img1 > image").setAttribute("width", Number(zoomOut)-20);
-                console.log(zoomOut);
-              }  
-          }
-
-
-          /*
-
-            var getLocalStorageSize = function() {
-                var total = 0;
-                for (var x in localStorage) {
-                    // Value is multiplied by 2 due to data being stored in `utf-16` format, which requires twice the space.
-                    var amount = (localStorage[x].length * 2) / 1024 / 1024;
-                    total += amount;
-                }
-                return total.toFixed(2);
-            };
-
-          */
-
-        </script>
+        <script src="js/vendor/jquery.bxslider.min.js"></script>
+        <script src="js/main.js"></script>
   </body>
 </html>
 
@@ -333,11 +158,12 @@
 
   .svg-container {
     width: 58%;
-    margin: 60px auto 20px;
+    margin: 40px auto 20px;
     display: inline-block;
     vertical-align: middle; 
     overflow: hidden;
     position: relative;
+    max-width: 900px;
   }
 
   .alert-block {
@@ -458,6 +284,7 @@
       display: block;
       margin: 50px 0px -60px 0px;
       width: 100%;
+      max-width: 100%;
     }
 
     .block-text {
@@ -515,6 +342,8 @@
 
   .bx-wrapper img {
     cursor: pointer;
+    max-width: 100%;
+    display: inline-block;
   }
 
   .bx-wrapper .bx-pager.bx-default-pager a:hover, .bx-wrapper .bx-pager.bx-default-pager a.active {
@@ -524,5 +353,7 @@
   .bx-wrapper {
     margin: 0 auto 50px;
   }
+
+  .bx-viewport li { min-height: 1px; min-width: 1px; }
 
 </style>
