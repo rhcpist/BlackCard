@@ -410,7 +410,13 @@ function stepBack() {
     var serialFace = JSON.stringify(item);
     localStorage.setItem("item"+getQueryVariable("item"), serialFace);
   var prev = window.item-1;
-  document.querySelector(".prev").setAttribute("href", "thirth.html?item=" + prev);
+  if (prev == 0) {
+    alert(prev);
+    document.querySelector(".prev").setAttribute("href", "second.html");
+  }
+  else {
+    document.querySelector(".prev").setAttribute("href", "thirth.html?item=" + prev);
+  }
 }
 
 /*
