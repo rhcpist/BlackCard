@@ -48,23 +48,29 @@ function getQueryVariable(variable)
   }
 
 $(document).ready(function(){
-  var slider = $('.bxslider').bxSlider({
-  mode: 'vertical',
-  minSlides: 4,
-  maxSlides: 4,
-  slideWidth: 220,
-  slideMargin: 10
-  
-});
-  if ($(document).width() < 1200) {
-   slider.reloadSlider({
-    mode: 'horizontal',
+    var slider = $('.bxslider').bxSlider({
+    mode: 'vertical',
     minSlides: 4,
     maxSlides: 4,
     slideWidth: 220,
     slideMargin: 10
-
+    
   });
+  if ($(document).width() < 1200) {
+      $(".bx-wrapper .bx-viewport").unwrap();
+      $(".bx-wrapper").unwrap();
+      $(".bx-controls").remove();
+      $(".bx-viewport").css("height", "220px");
+
+      //$(".bx-viewport").wrap("<div class='bx-wrapper'></div>");
+      slider.bxSlider({
+      mode: 'horizontal',
+      minSlides: 4,
+      maxSlides: 4,
+      slideWidth: 220,
+      slideMargin: 10
+
+    });
   $(".left-block").css("display", "none");
 }
 
@@ -78,11 +84,18 @@ $(document).ready(function(){
     document.querySelector("#img"+getQueryVariable("item")+" > image").setAttribute("xlink:href", obj.image);
 
  } else {
+
+  /*if (document.querySelector("#img"+ (Number(getQueryVariable("item"))+1) +" > image").getAttribute("xlink:href") == "img/icons-yellow/zerno-y-"+ (Number(getQueryVariable("item"))+1) +".png")
+    { 
+      console.log("fwefgwefw");
+      document.querySelector("#img"+ (Number(getQueryVariable("item"))+1) +" > image").setAttribute("xlink:href", "img/icons/zerno-"+ (Number(getQueryVariable("item"))+1) +".png");
+    }*/
     document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("xlink:href", "img/icons-yellow/zerno-y-"+getQueryVariable("item")+".png");
     document.querySelector("#img" + getQueryVariable("item") + " > image").setAttribute("x", eval("image" + getQueryVariable("item")).x);
     document.querySelector("#img" + getQueryVariable("item") + " > image").setAttribute("y", eval("image" + getQueryVariable("item")).y);
     document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("width", "108");
     document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("height", "78");
+
  }
 
 document.querySelectorAll('li > img')[0].src = "img/gallery-"+ getQueryVariable("item") +"/1.jpg";
@@ -392,7 +405,13 @@ function setDataToLocalStorage() {
 }
 
 function stepBack() {
-  var cx = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("x");
+  if (document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("xlink:href") == "img/icons-yellow/zerno-y-"+ getQueryVariable("item") +".png")
+  {
+    alert(document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("xlink:href"));
+    document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("xlink:href", "img/icons/zerno-"+getQueryVariable("item"));
+  }
+  else {
+    var cx = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("x");
     var cy = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("y");
 
     var width = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute('width');
@@ -405,16 +424,18 @@ function stepBack() {
         pos_y : cy,
         width : width,
         height : height
-    };              
-     
+    };               
     var serialFace = JSON.stringify(item);
     localStorage.setItem("item"+getQueryVariable("item"), serialFace);
+  }
+
   var prev = window.item-1;
   if (prev == 0) {
     alert(prev);
     document.querySelector(".prev").setAttribute("href", "second.html");
   }
   else {
+    
     document.querySelector(".prev").setAttribute("href", "thirth.html?item=" + prev);
   }
 }
@@ -432,3 +453,19 @@ function stepBack() {
   };
 
 */
+
+
+/*<svg width="580" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path stroke="#000" id="svg_6" d="m201.741096,272.999672l35.422115,-58.114478l0,0c-37.526888,-17.530559 -48.235139,-50.554384 -24.739014,-76.293585c23.495684,-25.739053 73.507186,-35.769508 115.537521,-23.172756c42.030323,12.59668 62.325592,43.697779 46.885893,71.851573c-15.438884,28.153783 -61.559163,44.14624 -106.54935,36.946238l-66.557165,48.783009z" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+ </g>
+</svg>*/
