@@ -92,33 +92,36 @@
 
            <h1 class="capture-text">ОБЕРІТЬ ФОТО</h1>
             <ul class="bxslider" style="padding: 0;">
-              <li><img onclick="clickeOnImg(4);" /></li>
-              <li><img onclick="clickeOnImg(5);" /></li>
-              <li><img onclick="clickeOnImg(6);" /></li>
-              <li><img onclick="clickeOnImg(7);" /></li>
               <li><img onclick="clickeOnImg(0);" /></li>
               <li><img onclick="clickeOnImg(1);" /></li>
               <li><img onclick="clickeOnImg(2);" /></li>
               <li><img onclick="clickeOnImg(3);" /></li>
+              <li><img onclick="clickeOnImg(4);" /></li>
+              <li><img onclick="clickeOnImg(5);" /></li>
+              <li><img onclick="clickeOnImg(6);" /></li>
+              <li><img onclick="clickeOnImg(7);" /></li>
             </ul>
             <h1 class="capture-text">АБО</h1>
           <input class="btn" type="file" id="inputFileToLoad" title="Оберіть з галереї" onchange="encodeImageFileAsURL();" />
 
           <div class="arrow-block">
-            <a href="javascript:void(0);" role="button" onclick="upClick();"><i class="fa fa-arrow-up fa-2x" aria-hidden="true"></i></a>
+            <a href="javascript:void(0);" role="button" onclick ="upClick();" ><i class="fa fa-arrow-up fa-2x" aria-hidden="true"></i></a>
             <a href="javascript:void(0);" role="button" onclick="downClick();"><i class="fa fa-arrow-down fa-2x" aria-hidden="true"></i></a>
             <a href="javascript:void(0);" role="button" onclick="leftClick();"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
             <a href="javascript:void(0);" role="button" onclick="rightClick();"><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></a>
             <br><br>
-            <a href="javascript:void(0);" role="button" onclick="zoomIn();"><i class="fa fa-search-plus fa-3x" aria-hidden="true"></i></a>
-            <a href="javascript:void(0);" role="button" onclick="zoomOut();"><i class="fa fa-search-minus fa-3x" aria-hidden="true"></i></a><br><br><br><br><br><br><br>
+            <a href="javascript:void(0);" role="button" onclick="zoomIn();"><i class="fa fa-search-plus fa-4x" aria-hidden="true"></i></a>
+            <a href="javascript:void(0);" role="button" onclick="zoomOut();"><i class="fa fa-search-minus fa-4x" aria-hidden="true"></i></a><br><br>
             <a class="fa fa-camera-retro fa-2x" href="#" role="button" onclick="prevStep();"><span style="font-family: 'Fira Sans', sans-serif;">   ЗМІНИТИ ФОТО</span></a>
           </div>
         </div>
         
       </div>
-      <a class="fa fa-arrow-right fa-2x next" href="" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif; float: right;">ДАЛІ</span></a>
-      <a class="fa fa-arrow-left fa-2x prev" href="" role="button" onclick="stepBack();"><span style="font-family: 'Fira Sans', sans-serif; float: right;">НАЗАД</span></a>
+      <div class="row" style="position: relative; z-index: 1000;">
+      	<a class="fa fa-arrow-right fa-2x next" href="" role="button" onclick="setDataToLocalStorage();"><span style="font-family: 'Fira Sans', sans-serif; float: right;">ДАЛІ</span></a>
+      	<a class="fa fa-arrow-left fa-2x prev" href="" role="button" onclick="stepBack();"><span style="font-family: 'Fira Sans', sans-serif; float: right;">НАЗАД</span></a>
+      </div>
+      
 
 
     </div> <!-- /container -->        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
@@ -174,7 +177,7 @@
     text-align: center;
     vertical-align: middle;
     position: relative;
-    top: -175px;
+    top: -215px;
   }
 
   .left-block {
@@ -226,6 +229,7 @@
 
   .input-group {
     margin: 25px auto;
+    display: inherit!important;
   }
 
   .btn {
@@ -301,7 +305,11 @@
     .alert-block {
       width: 100%;
       height: 270px;
-      top: 30px;
+      top: 30px!important;
+    }
+
+    .arrow-block {
+    	margin: 0px; 
     }
 
     .first-page-font3 {
@@ -321,9 +329,6 @@
       margin: 40px 5px 40px 0px;
     }
 
-    .bx-viewport {
-      height: 150px!important;
-    }
   }
 
 

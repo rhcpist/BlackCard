@@ -53,22 +53,29 @@ $(document).ready(function(){
     minSlides: 4,
     maxSlides: 4,
     slideWidth: 220,
-    slideMargin: 10
+    slideMargin: 10,
+    infiniteLoop: false
     
   });
   if ($(document).width() < 1200) {
-      $(".bx-wrapper .bx-viewport").unwrap();
-      $(".bx-wrapper").unwrap();
-      $(".bx-controls").remove();
-      $(".bx-viewport").css("height", "220px");
+      //$(".bx-viewport").unwrap();
+      //$(".bx-wrapper").unwrap();
+      //$(".bx-controls").remove();
+      //$(".bx-viewport").css("height", "220px");
 
       //$(".bx-viewport").wrap("<div class='bx-wrapper'></div>");
+      $(".alert-block > .capture-text").next().first().children().first().unwrap();
+      $(".alert-block > .capture-text").next().first().children().unwrap();
+      $(".alert-block > .capture-text").next().last().remove();
+      $(".alert-block > .bx-controls").remove();
+
       slider.bxSlider({
       mode: 'horizontal',
-      minSlides: 4,
-      maxSlides: 4,
+      minSlides: 2,
+      maxSlides: 2,
       slideWidth: 220,
-      slideMargin: 10
+      slideMargin: 10,
+      infiniteLoop: false
 
     });
   $(".left-block").css("display", "none");
@@ -118,7 +125,6 @@ function prevStep() {
   document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("xlink:href", "img/icons-yellow/zerno-y-"+getQueryVariable("item")+".png");
   document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("width", "108");
   document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("height", "78");
-  console.log(eval("image" + getQueryVariable("item")));
   //console.log(eval("obj" + getQueryVariable("item")).y);
   document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("x", eval("image" + getQueryVariable("item")).x);
   document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("y", eval("image" + getQueryVariable("item")).y);
@@ -201,7 +207,6 @@ document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
 
   if (localStorage.getItem("item1") != null) {
       var obj1 = JSON.parse(localStorage.getItem("item1")) ;
-      console.log(obj1);
       document.querySelector("#img1 > image").setAttribute("x", obj1.pos_x);
       document.querySelector("#img1 > image").setAttribute("y", obj1.pos_y);
       document.querySelector("#img1 > image").setAttribute("width", obj1.width);
@@ -216,7 +221,6 @@ document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
 
   if (localStorage.getItem("item2") != null) {
       var obj2 = JSON.parse(localStorage.getItem("item2")) ;
-      console.log(obj2);
       document.querySelector("#img2 > image").setAttribute("x", obj2.pos_x);
       document.querySelector("#img2 > image").setAttribute("y", obj2.pos_y);
       document.querySelector("#img2 > image").setAttribute("width", obj2.width);
@@ -231,7 +235,6 @@ document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
 
   if (localStorage.getItem("item3") != null) {
       var obj3 = JSON.parse(localStorage.getItem("item3")) ;
-      console.log(obj3);
       document.querySelector("#img3 > image").setAttribute("x", obj3.pos_x);
       document.querySelector("#img3 > image").setAttribute("y", obj3.pos_y);
       document.querySelector("#img3 > image").setAttribute("width", obj3.width);
@@ -246,7 +249,6 @@ document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
 
   if (localStorage.getItem("item4") != null) {
       var obj4 = JSON.parse(localStorage.getItem("item4")) ;
-      console.log(obj4);
       document.querySelector("#img4 > image").setAttribute("x", obj4.pos_x);
       document.querySelector("#img4 > image").setAttribute("y", obj4.pos_y);
       document.querySelector("#img4 > image").setAttribute("width", obj4.width);
@@ -261,7 +263,6 @@ document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
 
   if (localStorage.getItem("item5") != null) {
       var obj5 = JSON.parse(localStorage.getItem("item5")) ;
-      console.log(obj5);
       document.querySelector("#img5 > image").setAttribute("x", obj5.pos_x);
       document.querySelector("#img5 > image").setAttribute("y", obj5.pos_y);
       document.querySelector("#img5 > image").setAttribute("width", obj5.width);
@@ -276,7 +277,6 @@ document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
 
   if (localStorage.getItem("item6") != null) {
       var obj6 = JSON.parse(localStorage.getItem("item6")) ;
-      console.log(obj6);
       document.querySelector("#img6 > image").setAttribute("x", obj6.pos_x);
       document.querySelector("#img6 > image").setAttribute("y", obj6.pos_y);
       document.querySelector("#img6 > image").setAttribute("width", obj6.width);
@@ -291,7 +291,6 @@ document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
 
   if (localStorage.getItem("item7") != null) {
       var obj7 = JSON.parse(localStorage.getItem("item7")) ;
-      console.log(obj7);
       document.querySelector("#img7 > image").setAttribute("x", obj7.pos_x);
       document.querySelector("#img7 > image").setAttribute("y", obj7.pos_y);
       document.querySelector("#img7 > image").setAttribute("width", obj7.width);
@@ -306,7 +305,6 @@ document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
 
   if (localStorage.getItem("item8") != null) {
       var obj8 = JSON.parse(localStorage.getItem("item8")) ;
-      console.log(obj8);
       document.querySelector("#img8 > image").setAttribute("x", obj8.pos_x);
       document.querySelector("#img8 > image").setAttribute("y", obj8.pos_y);
       document.querySelector("#img8 > image").setAttribute("width", obj8.width);
