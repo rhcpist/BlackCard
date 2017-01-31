@@ -119,22 +119,22 @@ $(document).ready(function(){
       console.log("fwefgwefw");
       document.querySelector("#img"+ (Number(getQueryVariable("item"))+1) +" > image").setAttribute("xlink:href", "img/icons/zerno-"+ (Number(getQueryVariable("item"))+1) +".png");
     }*/
-    document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("xlink:href", "img/icons-yellow/zerno-y-"+getQueryVariable("item")+".png");
-    document.querySelector("#img" + getQueryVariable("item") + " > image").setAttribute("x", eval("image" + getQueryVariable("item")).x);
-    document.querySelector("#img" + getQueryVariable("item") + " > image").setAttribute("y", eval("image" + getQueryVariable("item")).y);
-    document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("width", "108");
-    document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("height", "78");
+    //document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("xlink:href", "img/icons-yellow/zerno-y-"+getQueryVariable("item")+".png");
+    //document.querySelector("#img" + getQueryVariable("item") + " > image").setAttribute("x", eval("image" + getQueryVariable("item")).x);
+    //document.querySelector("#img" + getQueryVariable("item") + " > image").setAttribute("y", eval("image" + getQueryVariable("item")).y);
+    //document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("width", "108");
+    //document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("height", "78");
 
  }
 
-document.querySelectorAll('li > img')[0].src = "img/gallery-"+ getQueryVariable("item") +"/1.jpg";
+/*document.querySelectorAll('li > img')[0].src = "img/gallery-"+ getQueryVariable("item") +"/1.jpg";
 document.querySelectorAll('li > img')[1].src = "img/gallery-"+ getQueryVariable("item") +"/2.jpg";
 document.querySelectorAll('li > img')[2].src = "img/gallery-"+ getQueryVariable("item") +"/3.jpg";
 document.querySelectorAll('li > img')[3].src = "img/gallery-"+ getQueryVariable("item") +"/4.jpg";
 document.querySelectorAll('li > img')[4].src = "img/gallery-"+ getQueryVariable("item") +"/5.jpg";
 document.querySelectorAll('li > img')[5].src = "img/gallery-"+ getQueryVariable("item") +"/6.jpg";
 document.querySelectorAll('li > img')[6].src = "img/gallery-"+ getQueryVariable("item") +"/7.jpg";
-document.querySelectorAll('li > img')[7].src = "img/gallery-"+ getQueryVariable("item") +"/8.jpg";
+document.querySelectorAll('li > img')[7].src = "img/gallery-"+ getQueryVariable("item") +"/8.jpg";*/
 
 });
 
@@ -427,69 +427,88 @@ function setDataToLocalStorage() {
 }
 
 function stepBack() {
-  if (document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("xlink:href") == "img/icons-yellow/zerno-y-"+ getQueryVariable("item") +".png")
-  {
-    alert(document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("xlink:href"));
-    document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("xlink:href", "img/icons/zerno-"+getQueryVariable("item"));
-  }
-  else {
-    var cx = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("x");
-    var cy = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("y");
-
-    var width = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute('width');
-    var height = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute('height');
-    var href = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("xlink:href");
-
-    var item = {
-        image: href,
-        pos_x : cx,
-        pos_y : cy,
-        width : width,
-        height : height
-    };               
-    var serialFace = JSON.stringify(item);
-    localStorage.setItem("item"+getQueryVariable("item"), serialFace);
-  }
-
-  var prev = window.item-1;
-  if (prev == 0) {
-    alert(prev);
-    document.querySelector(".prev").setAttribute("href", "second.html");
-  }
-  else {
-    
-    document.querySelector(".prev").setAttribute("href", "thirth.html?item=" + prev);
-  }
+  document.querySelector(".prev").setAttribute("href", "thirth.html?item=8");
 }
 
-/*
 
-  var getLocalStorageSize = function() {
-      var total = 0;
-      for (var x in localStorage) {
-          // Value is multiplied by 2 due to data being stored in `utf-16` format, which requires twice the space.
-          var amount = (localStorage[x].length * 2) / 1024 / 1024;
-          total += amount;
-      }
-      return total.toFixed(2);
-  };
+/*var genCard = function() {
+  var svg = document.querySelector('.svg-container');
+  var canvas = document.getElementById('canvas');
+  var svgWider = svg.innerHTML
+  canvg(canvas, svgWider);
 
-*/
+  var img = canvas.toDataURL("image/png", 1.0);
+  console.log(img);
+  var img = new Image();
+  img.src = img;
+  console.log(img);
 
 
-/*
-<div class='dialog'>
-<svg width='220' height='150' xmlns='http://www.w3.org/2000/svg'>
- <g>
-  <title>background</title>
-  <rect fill='none' id='canvas_background' height='152' width='222' y='-1' x='-1'/>
- </g>
- <g>
-  <title>Layer 1</title>
-  <path stroke='#fff225' id='svg_3' d='m110.24998,0.75001c-60.47553,0 -109.49998,33.35593 -109.49998,74.50127c0,14.06056 5.79571,27.19582 15.76853,38.41186l-15.76853,31.36134l43.90144,-10.22553c18.29424,9.34563 40.96098,14.95104 65.59854,14.95104c60.47559,0 109.50001,-33.35597 109.50001,-74.49872c0,-41.14533 -49.02441,-74.50127 -109.50001,-74.50127l0,0.00001z' stroke-opacity='null' stroke-width='2' fill='none'/>
- </g>
-</svg>
-</div>
+}
 
-$(".alert-block").html("<div class='dialog'><svg width='220' height='150' xmlns='http://www.w3.org/2000/svg'><g><title>background</title><rect fill='none' id='canvas_background' height='152' width='222' y='-1' x='-1'/></g><g><title>Layer 1</title><path stroke='#fff225' id='svg_3' d='m110.24998,0.75001c-60.47553,0 -109.49998,33.35593 -109.49998,74.50127c0,14.06056 5.79571,27.19582 15.76853,38.41186l-15.76853,31.36134l43.90144,-10.22553c18.29424,9.34563 40.96098,14.95104 65.59854,14.95104c60.47559,0 109.50001,-33.35597 109.50001,-74.49872c0,-41.14533 -49.02441,-74.50127 -109.50001,-74.50127l0,0.00001z' stroke-opacity='null' stroke-width='2' fill='none'/></g></svg></div>");
-*/
+
+
+function drawInlineSVG() {
+    var rawSVG = document.querySelector('.svg-container > svg').outerHTML;
+    var myCanvas = document.getElementById("canvas");
+    var ctx = myCanvas.getContext("2d");
+    var svg = new Blob([rawSVG], {type:"image/svg+xml;charset=utf-8"}),
+        domURL = self.URL || self.webkitURL || self,
+        url = domURL.createObjectURL(svg),
+        img = new Image;
+    
+    img.onload = function () {
+        ctx.drawImage(this, 0, 0);     
+        domURL.revokeObjectURL(url);
+    };
+    
+    img.src = url;
+    console.log(canvas.toDataURL());
+}*/
+
+var exportPNG = function() {
+        
+    var svg = document.querySelector( "svg" );
+    var svgData = new XMLSerializer().serializeToString( svg );
+
+    var canvas = document.createElement( "canvas" );
+    var ctx = canvas.getContext( "2d" );
+
+    var dataUri = '';
+    try {
+        dataUri = 'data:image/svg+xml;base64,' + btoa(svgData);
+    } catch (ex) {
+        
+
+    }
+
+     var img = document.createElement( "img" );
+
+    img.onload = function() {
+        ctx.drawImage( img, 0, 0 );
+
+        try {
+                                            
+            // Try to initiate a download of the image
+            var a = document.createElement("a");
+            a.download = "MDMS_Graph_Export.jpeg";
+            a.href = canvas.toDataURL("image/jpeg");
+            document.querySelector("body").appendChild(a);
+            a.click();
+            document.querySelector("body").removeChild(a);
+                                            
+        } catch (ex) {
+    
+            // If downloading not possible (as in IE due to canvas.toDataURL() security issue) 
+            // then display image for saving via right-click
+            
+            var imgPreview = document.createElement("div");
+            imgPreview.appendChild(img);
+            document.querySelector("body").appendChild(imgPreview);
+    
+        }
+    };
+    console.log(dataUri);
+    img.src = dataUri;
+    
+}
