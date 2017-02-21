@@ -10,12 +10,12 @@
 	overflow: hidden;
     position: relative;
 }*/
-
-.btn {         
-  opacity: 1;       
+/*
+.btn {
+  opacity: 1;
 }
-.btn.active {        
-  opacity: 0.6;       
+.btn.active {
+  opacity: 0.6;
 }
 
 
@@ -47,7 +47,7 @@
 }
 
 .card{
-    font-family: 'Roboto', sans-serif; 
+    font-family: 'Roboto', sans-serif;
     margin-top: 10px;
     position: relative;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -56,12 +56,12 @@
 }
 
 .card .card-content {
-    padding: 10px;    
+    padding: 10px;
 }
 
 .card .card-content .card-title, .card-reveal .card-title{
     font-size: 24px;
-    font-weight: 200;    
+    font-weight: 200;
 }
 
 .card .card-action{
@@ -72,30 +72,30 @@
     font-size: 15px;
     color: #ffab40;
     text-transform:uppercase;
-    margin-right: 20px;    
+    margin-right: 20px;
     -webkit-transition: color 0.3s ease;
     -moz-transition: color 0.3s ease;
     -o-transition: color 0.3s ease;
     -ms-transition: color 0.3s ease;
     transition: color 0.3s ease;
 }
-.card .card-action a:hover{    
+.card .card-action a:hover{
     color:#ffd8a6;
     text-decoration:none;
 }
 
-.card .card-reveal{    
+.card .card-reveal{
     padding: 20px;
     position: absolute;
     background-color: #FFF;
     width: 100%;
     overflow-y: auto;
-    /*top: 0;*/
+    /*top: 0;*//*
     left:0;
     bottom:0;
     height: 100%;
     z-index: 1;
-    display: none;    
+    display: none;
 }
 
 .card .card-reveal p{
@@ -107,4 +107,296 @@
     background-color: transparent;
     font-size:18px;
 }
+*/
 
+body {
+    background: #160002 url('../img/bg-2.jpg') fixed no-repeat bottom left;
+    background-size: 87% auto;
+}
+
+polygon, circle {
+    cursor: pointer;
+    /*stroke-dasharray: 650;
+    stroke-dashoffset: 650;
+    animation: offset 3s infinite linear;
+    stroke-width: 3;*/
+}
+
+@keyframes offset {
+     100% {
+         stroke-dashoffset: 0;
+     }
+ }
+
+.svg-container {
+    width: 100%;
+    margin: 40px auto 20px;
+    display: inline-block;
+    vertical-align: middle; 
+    overflow: hidden;
+    position: relative;
+    max-width: 600px;
+  }
+
+  .alert-block {
+    *border: 1px solid white;
+    width: 200px;
+    height: 600px; 
+    display: inline-block; 
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    margin: 0px 10px;
+  }
+
+.block-text {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#301408+0,865d29+50,4e2f13+80,4e2f13+100,301408+100 */
+    background: #301408; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #301408 0%, #865d29 50%, #4e2f13 80%, #4e2f13 100%, #301408 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #301408 0%, #865d29 50%, #4e2f13 80%, #4e2f13 100%, #301408 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #301408 0%, #865d29 50%, #4e2f13 80%, #4e2f13 100%, #301408 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#301408', endColorstr='#301408', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+
+    width: 212px;
+    height: 300px;
+    border-radius: 20px;
+    border: solid 1px #fff225;
+    margin: 0px 10px;
+
+    position: relative;
+    top: 20px;
+    display: inline-block;
+}
+
+.block-text span {
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 20px;
+    margin-top: 50%;
+    top: 50px;
+    position: relative;
+
+}
+
+.input-group {
+    display: block;
+    *margin-top: 400px !important;
+    *margin-left: 10px;
+}
+
+.btn {
+    width: 230px !important;
+    padding: 11px 11px !important;
+    background-image: -moz-linear-gradient(top, #F0F011, #D9AB14);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F0F011), to(#D9AB14));
+    background-image: -webkit-linear-gradient(top, #F0F011, #D9AB14);
+    background-image: -o-linear-gradient(top, #F0F011, #D9AB14);
+    background-image: linear-gradient(to bottom, #F0F011, #D9AB14);
+    background-repeat: repeat-x;
+    border-color: #ffffff;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F0F011', endColorstr='#D9AB14', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    color: #1C1C1C;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 18px;
+    background-color: #D9AB14;
+    border-radius: 20px;
+    padding: 11px 11px;
+    font-size: 14px;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active,
+.btn.disabled,
+.btn[disabled] {
+    color: #1C1C1C;
+    background-color: #D9AB14;
+}
+
+/*.arrows {
+    margin-top: -100px;
+}*/
+
+.arrow-block {
+    margin: 15px;
+    display: none;
+}
+
+.arrow-block a {
+    margin: 0 7px;
+    color: #F0F011;
+    text-decoration: none;
+}
+
+.arrow-block a span {
+
+}
+
+
+.capture-text	{
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 25px;
+    text-align: center;
+  } 
+
+.next:hover,
+.next:focus,
+.next:active	{
+	text-decoration: none;
+    }
+
+.prev:hover,
+.prev:focus,
+.prev:active	{
+	text-decoration: none;
+   }
+
+@media only screen and (max-width: 1200px) {
+
+    body {
+        background-size: 100% auto;
+    }
+
+    .arrow-block {
+        margin-top: 0!important;
+    }
+
+    .svg-container {
+        *display: block;
+        margin: 200px 0px 0px 0px;
+        width: 100%;
+    }
+
+    .block-text {
+        font-size: 24px;
+        width: 100%;
+	display: none;
+    }
+
+    .alert-block {
+        *display: none;
+        width: 100%;
+        height: 240px;
+        padding-top: 10px!important;
+    }
+
+    .first-page-font3 {
+        font-size: 25px;
+    }
+
+    .custom-btn {
+        margin-right: 0px !important;
+        display: inline-block!important;
+        width: 100%;
+    }
+
+    .prev span {
+	display: none;
+    }
+
+    .next span {
+        display: none;
+    }
+
+    .arrows {
+        margin-top: 10px!important;
+    }
+
+    .next img {
+    	width: 30px;		
+    }
+
+    .prev img {
+	width: 30px;
+    }
+
+    .btn {
+	width: 170px!important;
+    }
+
+    .container-fluid {
+ 	display: block!important;
+    }
+
+    svg {
+   	height: 100%;
+	width: 100%;
+    }
+}
+
+.galereya {
+    display: none;
+}
+
+.galereya ul {
+    width: 190px;
+    height: 1200px;
+	padding: 0;
+	margin: 0;
+}
+
+.mCustomScrollbar {
+    *width: 180px;
+    height: 450px;
+	overflow: hidden;
+}
+
+@media only screen and (max-width: 1200px) {
+    .galereya ul {
+        width: 1240px;
+        height: 150px;
+    }
+	.mCustomScrollbar {
+		max-width: 600px;
+        height: 180px;
+        overflow: hidden;
+        margin: 0px auto;
+	}
+
+    .galereya ul li {
+        float: left;
+    }
+
+}
+
+.galereya ul li {
+    display: block;
+    *float: left;
+}
+.galereya ul li img {
+    height: 150px;
+    cursor: pointer;
+}
+
+.btn .badge {
+    display: none!important;
+}
+
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.modal-content{
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F0F011), to(#D9AB14));
+    background-image: -webkit-linear-gradient(top, #F0F011, #D9AB14);
+    background-image: -o-linear-gradient(top, #F0F011, #D9AB14);
+    background-image: linear-gradient(to bottom, #F0F011, #D9AB14);
+    background-repeat: repeat-x;
+    border-color: #ffffff;
+}

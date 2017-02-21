@@ -1,495 +1,515 @@
 $(function(){
+    $(".btn").filestyle({input: false});
+    $(".btn").filestyle('buttonText', 'ОБЕРІТЬ З ГАЛЕРЕЇ');
 
-  $(".btn").filestyle({input: false});
-  $(".btn").filestyle('buttonText', 'ОБЕРІТЬ З ГАЛЕРЕЇ');
-  
+    if (getPosition()==0) { 
+        document.querySelector(".prev").style.display = "none"; 
+        document.querySelector(".alert-block").style.paddingTop = "280px";
+        document.querySelector(".prev").style.display = "none";
+        $(".btn").filestyle('buttonText', 'ОБЕРІТЬ ФОТО');
+    }
+
+    $(".mCustomScrollbar").mCustomScrollbar({
+        theme:"light-3",
+        axis:"xy",
+            advanced: { autoExpandHorizontalScroll:true,updateOnContentResize:true }
+
+    });
 });
 
-var image1 = {
-      x: 245,
-      y: 35
-    },
-    image2 = {
-      x: 406,
-      y: 105
-    },
-    image3 = {
-      x: 455,
-      y: 262
-    },
-    image4 = {
-      x: 406,
-      y: 410
-    },
-    image5 = {
-      x: 245,
-      y: 487
-    },
-    image6 = {
-      x: 90,
-      y: 410
-    },
-    image7 = {
-      x: 40,
-      y: 262
-    },
-    image8 = {
-      x: 88,
-      y: 114
+var position = 0 ;
+
+var default_param = [
+    {x:0,y:0,width:160,height:160,rotation:0},
+    {x:0,y:0,width:248.53,height:300,rotation:0},
+    {x:0,y:0,width:300,height:300,rotation:0},
+    {x:0,y:0,width:300,height:248.53,rotation:0},
+    {x:0,y:0,width:300,height:300,rotation:0},
+    {x:0,y:0,width:248.53,height:300,rotation:0},
+    {x:0,y:0,width:300,height:300,rotation:0},
+    {x:0,y:0,width:300,height:248.53,rotation:0},
+    {x:0,y:0,width:300,height:300,rotation:0}
+];
+
+var help = [
+    //"<span>Оберіть Ваше</span><br><span>улюблене фото -</span><br><span>воно буде</span><br><span>завантажено в центр</span><br><span>Карти Мрій</span><br>",
+    "<span>Вы можете</span><br><span>змінити фото,</span><br><span>або перейти на перший сектор</span><br><span>Карти Мрій,</span><br><span>натиснувши «Далі»</span><br>",
+    "<br><br><span>Оберіть фото,</span><br><span>що відображає</span><br><span>Вашу мрію</span><br><span>про успіх</span><br><br>",
+    "<br><br><span>Оберіть фото,</span><br><span>що відображає</span><br><span>Вашу мрію</span><br><span>про кохання<span><br><br>",
+    "<br><span>Оберіть фото,</span><br><span>що відображає</span><br><span>Ваші мрії</span><br><span>про творчість</span><br><span>чи подорожі</span><br><br>",
+    "<span><br>Оберіть фото,</span><br><span>що відображає</span><br><span>Ваше уявлення про здоров'я,</span><br><span>гармонію чи красу</span><br>",
+    "<span><br>Оберіть фото,</span><br><span>що відображає</span><br><span>Вашу мрію</span><br><span>про кар'єру</span><br><br>",
+    "<span><br>Оберіть фото,</span><br><span>що відображає</span><br><span>Ваше прагнення</span><br><span>до розвитку</span><br><br>",
+    "<span><br>Оберіть фото,</span><br><span>що відображає</span><br><span>Вашу мрію</span><br><span>про сім'ю</span><br><br>",
+    "<span><br>Оберіть фото,</span><br><span>що відображає</span><br><span>Вашу мрію</span><br><span>про достаток</span><br><br>"
+];
+
+function setHelpText(position) {
+    document.querySelector(".block-text > div").innerHTML = ""; 
+    document.querySelector(".block-text > div").innerHTML = help[position];
+}
+
+function animatePolygon(number) {
+    //document.querySelectorAll("polygon").forEach(function(item){ item.setAttribute("stroke-width", "1"); });
+    var polygons = document.querySelectorAll("polygon");
+    for (var i = 0; i < polygons.length; i++) {
+        polygons[i].setAttribute("stroke-width", "1");
+    }
+
+    document.querySelectorAll("polygon")[number].setAttribute("stroke-width", "6");
+    var images = document.querySelectorAll('image');
+    /*document.querySelectorAll("image").forEach( function(item, index, images) {
+        if (index != 0 && item.getAttribute("xlink:href") == images64[index].zerno) {
+            document.querySelectorAll("image")[index].setAttribute("xlink:href", images64[index].zerno_def);
+        }
+    } );*/
+
+    for (var i = 0; i < images.length; i++) {
+        if (i != 0 && images[i].getAttribute("xlink:href") == images64[i].zerno) {
+            document.querySelectorAll("image")[i].setAttribute("xlink:href", images64[i].zerno_def);
+        }
+    }
+
+    document.querySelector("#img"+(number+1)+" image").setAttribute("xlink:href", images64[(number+1)].zerno);
+    document.querySelector("#img"+(number+1)+" image").setAttribute("x", default_param[(number+1)].x);
+    document.querySelector("#img"+(number+1)+" image").setAttribute("y", default_param[(number+1)].y);
+    document.querySelector("#img"+(number+1)+" image").setAttribute("width", default_param[(number+1)].width);
+    document.querySelector("#img"+(number+1)+" image").setAttribute("height", default_param[(number+1)].height);
+
+}
+
+function getPosition() {
+    return position;
+}
+
+function getImageElement() {
+    return document.querySelector('#img' + getPosition() + ' > image');
+}
+
+function getImage(){
+    return getImageElement().getAttribute( "xlink:href") ;
+}
+
+function setImage( image ) {
+    var element = getImageElement() ;
+    element.setAttribute( 'x' , default_param[ getPosition() ].x );
+    element.setAttribute( 'y' , default_param[ getPosition() ].y );
+    element.setAttribute( 'width' , default_param[ getPosition() ].width );
+    element.setAttribute( 'height' , default_param[ getPosition() ].height );
+    element.setAttribute( "xlink:href", image ) ;
+
+    waitingDialog.hide();
+    if (document.querySelector("#img0 image").getAttribute("xlink:href") == "/img/sun.png") {
+        document.querySelectorAll("circle")[0].setAttribute("stroke", "");
+        document.querySelectorAll("circle")[0].setAttribute("stroke-width", "");
+        document.querySelector("#img0 image").setAttribute("xlink:href", images64[0].face);
+    }
+}
+
+function resizeImage( image  ){
+
+    //console.log( "Image1 size: " + (image.length/1048576) + " MB" );
+
+    //Создадим картинку из данных
+    var img = new Image() ;
+
+    img.onload = function () {
+        //var width = default_param[ getPosition() ].width;
+        //var height = default_param[ getPosition() ].height;
+
+        var width = 600;
+        var height = 600;
+
+        var orintation = this.width > this.height ? true : false ;
+
+        if( orintation ){
+            //Горизонтальная и ужимаем по горизонтали
+            height = this.height / (this.width/width);
+        }
+        else
+        {
+            //Вертикальная и ужимаем по вуртикали
+            width = this.width / (this.height/height);
+        }
+
+        //Создаем новый елемент канваса
+        var canvas = document.createElement('canvas') ;
+
+        canvas.height = height;
+        canvas.width = width;
+
+        //Рисуем картинку
+        canvas.getContext('2d').drawImage( img, 0, 0, width, height );
+
+        //console.log( width );
+        //console.log( height );
+
+        var tmp = canvas.toDataURL( 'image/png' , 1.0 );
+        //console.log( "Image2 size: " + (tmp.length/1048576) + " MB" );
+        setImage( tmp );
+
+        //Возврощаем данные уже пригодные для вставки
+        //setImage( canvas.toDataURL( 'image/png' , 1.0 ) );
+    } ;
+    img.src = image ;
+}
+
+function reDrawGallery() {
+    var pos = getPosition();
+    var ul = document.querySelector( '.galereya ul' );
+    //console.log(images64[pos].img1);
+    ul.innerHTML =
+        "<li onclick='setImage(\"" + images64[pos].img1 + "\");'><img src='"+preview_images64[pos].img1+"'/></li>" +
+        "<li onclick='setImage(\"" + images64[pos].img2 + "\");'><img src='"+preview_images64[pos].img2+"' /></li>" +
+        "<li onclick='setImage(\"" + images64[pos].img3 + "\");'><img src='"+preview_images64[pos].img3+"'/></li>" +
+        "<li onclick='setImage(\"" + images64[pos].img4 + "\");'><img src='"+preview_images64[pos].img4+"' /></li>" +
+        "<li onclick='setImage(\"" + images64[pos].img5 + "\");'><img src='"+preview_images64[pos].img5+"'/></li>" +
+        "<li onclick='setImage(\"" + images64[pos].img6 + "\");'><img src='"+preview_images64[pos].img6+"' /></li>" +
+        "<li onclick='setImage(\"" + images64[pos].img7 + "\");'><img src='"+preview_images64[pos].img7+"'/></li>" +
+        "<li onclick='setImage(\"" + images64[pos].img8 + "\");'><img src='"+preview_images64[pos].img8+"'/></li>";
+}
+
+function btn_next() {
+    if ( getPosition() == 1 ) { document.querySelector(".prev").style.display = "block"; }
+    if ( getPosition() == 8 ) {
+        document.querySelectorAll("polygon")[7].setAttribute("stroke-width", "1");
+        if (document.querySelector("#img8 image").getAttribute("xlink:href") ==  images64[8].zerno) {
+            document.querySelector("#img8 image").setAttribute("xlink:href", images64[8].zerno_def);
+        }
+        getDomScreen();
+        return null;
+    }
+
+    animatePolygon(getPosition());
+    document.querySelector(".alert-block").style.paddingTop = "0px";
+    document.querySelector(".input-group").style.display = "block";
+    document.querySelector(".galereya").style.display = "block";
+    document.getElementsByClassName("arrow-block")[0].style.display = "none";
+    $(".btn").filestyle('buttonText', 'ОБЕРІТЬ З ГАЛЕРЕЇ');
+    position++ ;
+
+    /*if( getImage() == '/img/icons/zerno-' + getPosition() + '.png' ){
+        setImage( '/img/icons-yellow/zerno-y-' + getPosition() + '.png' );
+    }*/
+
+    setHelpText(getPosition());
+    reDrawGallery();
+}
+
+function btn_prev() {
+    if ( getPosition() == 2 ) { document.querySelector(".prev").style.display = "none"; }
+    //if ( getPosition() == 0 ) { document.querySelector(".prev").style.display = "none"; }
+    if( getPosition() < 2 ){ return null; }
+    position--;
+
+   animatePolygon(getPosition()-1); 
+   setHelpText(getPosition()); 
+   reDrawGallery();
+}
+
+function handleFiles() {
+
+    var filesToUpload = document.getElementById('inputFileToLoad').files;
+
+    if( filesToUpload.length < 1 ){ return null; }
+    waitingDialog.show();
+
+    document.querySelector(".fa-camera-retro").style.display = "inline-block";
+    document.getElementsByClassName("arrow-block")[0].style.display = "block";
+    document.getElementsByClassName("arrow-block")[0].style.marginTop = "185px";
+    document.querySelector(".galereya").style.display = "none";
+    document.querySelector(".input-group").style.display = "none";
+
+    if ( getPosition() == 0 ) { 
+        document.querySelector(".arrows").style.display = "block";
+        document.querySelector(".alert-block").style.paddingTop = "0";
+        document.querySelector(".fa-camera-retro").style.display = "none";
+        document.querySelector(".input-group").style.display = "block";
+        document.querySelectorAll("circle")[0].setAttribute("stroke", "#fff225");
+        document.querySelectorAll("circle")[0].setAttribute("stroke-width", "1");
+	    setHelpText(getPosition());
+    }
+
+    var reader = new FileReader();
+    // Set the image once loaded into file reader
+    reader.onload = function(e) {
+
+        var img = e.target.result;
+
+        resizeImage( img );
     };
 
-function getQueryVariable(variable)
-  {
-         var query = window.location.search.substring(1);
-         var vars = query.split("&");
-         for (var i=0;i<vars.length;i++) {
-                 var pair = vars[i].split("=");
-                 if(pair[0] == variable){return pair[1];}
-         }
-         return(false);
-  }
-
-$(document).ready(function(){
-    var slider = $('.bxslider').bxSlider({
-    mode: 'vertical',
-    minSlides: 4,
-    maxSlides: 4,
-    slideWidth: 220,
-    slideMargin: 10,
-    infiniteLoop: false
-    
-  });
-
-  $(".bx-prev").css({
-      "transform": "rotate(90deg)",
-      "top": "30px", 
-      "margin-left" : "75px"
-  });
-
-  $(".bx-next").css({
-      "transform": "rotate(90deg)",
-      "top": "640px", 
-      "margin-right" : "92px"
-  });
-
-  
-
-  if ($(document).width() < 1200) {
-      $(".alert-block > .capture-text").next().first().children().first().unwrap();
-      $(".alert-block > .capture-text").next().first().children().unwrap();
-      //$(".alert-block > .capture-text").next().last().remove();
-      $(".alert-block > .bx-controls").remove();
-
-      slider.bxSlider({
-      mode: 'horizontal',
-      minSlides: 2,
-      maxSlides: 2,
-      slideWidth: 220,
-      slideMargin: 10,
-      infiniteLoop: false
-
-    });
-  //$(".left-block").css("display", "none");
-    $(".bx-prev").css({
-        "transform": "none",
-        "top": "50%", 
-        "margin-left" : "none"
-    });
-
-    $(".bx-next").css({
-        "transform": "none",
-        "top": "50%", 
-        "margin-right" : "none"
-    });
+    reader.readAsDataURL( filesToUpload[0] );
+    $(".btn").filestyle('clear');
 }
 
- if (localStorage.getItem("item" + getQueryVariable("item")) != null) {
-    var obj = JSON.parse(localStorage.getItem("item" + getQueryVariable("item"))) ;
-    console.log(obj);
-    document.querySelector("#img"+getQueryVariable("item")+" > image").setAttribute("x", obj.pos_x);
-    document.querySelector("#img"+getQueryVariable("item")+" > image").setAttribute("y", obj.pos_y);
-    document.querySelector("#img"+getQueryVariable("item")+" > image").setAttribute("width", obj.width);
-    document.querySelector("#img"+getQueryVariable("item")+" > image").setAttribute("height", obj.height);
-    document.querySelector("#img"+getQueryVariable("item")+" > image").setAttribute("xlink:href", obj.image);
+ function setDataToLocalStorage() {
 
- } else {
+	localStorage.clear();              
+	var saveImg = JSON.stringify();
+	localStorage.setItem("face", saveImg);
+}
 
-  /*if (document.querySelector("#img"+ (Number(getQueryVariable("item"))+1) +" > image").getAttribute("xlink:href") == "img/icons-yellow/zerno-y-"+ (Number(getQueryVariable("item"))+1) +".png")
-    { 
-      console.log("fwefgwefw");
-      document.querySelector("#img"+ (Number(getQueryVariable("item"))+1) +" > image").setAttribute("xlink:href", "img/icons/zerno-"+ (Number(getQueryVariable("item"))+1) +".png");
-    }*/
-    document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("xlink:href", "img/icons-yellow/zerno-y-"+getQueryVariable("item")+".png");
-    document.querySelector("#img" + getQueryVariable("item") + " > image").setAttribute("x", eval("image" + getQueryVariable("item")).x);
-    document.querySelector("#img" + getQueryVariable("item") + " > image").setAttribute("y", eval("image" + getQueryVariable("item")).y);
-    document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("width", "108");
-    document.querySelector("#img" + getQueryVariable("item") + "> image").setAttribute("height", "78");
+function drawImageIOSFix (ctx, img) {
+    var vertSquashRatio = detectVerticalSquash (img)
+    var arg_count = arguments.length
+    switch (arg_count) {
+        case 4  : ctx.drawImage (img, arguments[2], arguments[3] / vertSquashRatio); break
+        case 6  : ctx.drawImage (img, arguments[2], arguments[3], arguments[4], arguments[5] / vertSquashRatio); break
+        case 8  : ctx.drawImage (img, arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7] / vertSquashRatio); break
+        case 10 : ctx.drawImage (img, arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7], arguments[8], arguments[9] / vertSquashRatio); break
+    }
 
- }
+    // Detects vertical squash in loaded image.
+    // Fixes a bug which squash image vertically while drawing into canvas for some images.
+    // This is a bug in iOS6 (and IOS7) devices. This function from https://github.com/stomita/ios-imagefile-megapixel
+    function detectVerticalSquash (img) {
+        var iw = img.naturalWidth, ih = img.naturalHeight
+        var canvas = document.createElement ("canvas")
+        canvas.width  = 1
+        canvas.height = ih
+        var ctx = canvas.getContext('2d')
+        ctx.drawImage (img, 0, 0)
+        var data = ctx.getImageData(0, 0, 1, ih).data
+        // search image edge pixel position in case it is squashed vertically.
+        var sy = 0, ey = ih, py = ih
+        while (py > sy) {
+            var alpha = data[(py - 1) * 4 + 3]
+            if (alpha === 0) {ey = py} else {sy = py}
+            py = (ey + sy) >> 1
+        }
+        var ratio = (py / ih)
+        return (ratio === 0) ? 1 : ratio
+    }
+}
 
-document.querySelectorAll('li > img')[0].src = "img/gallery-"+ getQueryVariable("item") +"/1.jpg";
-document.querySelectorAll('li > img')[1].src = "img/gallery-"+ getQueryVariable("item") +"/2.jpg";
-document.querySelectorAll('li > img')[2].src = "img/gallery-"+ getQueryVariable("item") +"/3.jpg";
-document.querySelectorAll('li > img')[3].src = "img/gallery-"+ getQueryVariable("item") +"/4.jpg";
-document.querySelectorAll('li > img')[4].src = "img/gallery-"+ getQueryVariable("item") +"/5.jpg";
-document.querySelectorAll('li > img')[5].src = "img/gallery-"+ getQueryVariable("item") +"/6.jpg";
-document.querySelectorAll('li > img')[6].src = "img/gallery-"+ getQueryVariable("item") +"/7.jpg";
-document.querySelectorAll('li > img')[7].src = "img/gallery-"+ getQueryVariable("item") +"/8.jpg";
+function getDomScreen() {
+    waitingDialog.show();
 
-});
+    var svg = document.querySelector( "svg" );
+    svg.setAttribute('width', 600);
+    svg.setAttribute('height', 600);
 
+    var svgData = new XMLSerializer().serializeToString( svg );
 
+    var dataUri = 'data:image/svg+xml;base64,' + btoa( svgData ) ;
+
+    var img = new Image();
+
+    img.src = dataUri;
+
+    setTimeout( function () {
+
+        var canvas = document.createElement( "canvas" );
+
+        canvas.width  = 600;
+        canvas.height = 600;
+
+        canvas.getContext( "2d" ).drawImage( img, 0, 0, 600, 600);
+
+        var image = canvas.toDataURL( "image/png" ) ;
+        //document.getElementById('test').setAttribute('src' , image);
+        localStorage.clear();
+        localStorage.setItem( "image", image );
+
+        window.location = "final.html";
+
+    }, 5000 );
+}
 
 function prevStep() {
-  console.log("prevStep");
-  document.getElementsByClassName("arrow-block")[0].style.display = "none";
-
-  document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("xlink:href", "img/icons-yellow/zerno-y-"+getQueryVariable("item")+".png");
-  document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("width", "108");
-  document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("height", "78");
-  //console.log(eval("obj" + getQueryVariable("item")).y);
-  document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("x", eval("image" + getQueryVariable("item")).x);
-  document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("y", eval("image" + getQueryVariable("item")).y);
-  document.getElementsByClassName("bx-wrapper")[0].style.display = "block";
-  document.getElementsByClassName("alert-block")[0].style.top = "-150px";
-  document.getElementsByClassName("capture-text")[0].style.display = "block";
-  document.getElementsByClassName("capture-text")[1].style.display = "block";
-  //document.getElementsByClassName("bootstrap-filestyle")[0].style.display = "block";
-  //$(".btn").filestyle('clear');
-
+    document.getElementsByClassName("arrow-block")[0].style.display = "none";
+    document.querySelector(".galereya").style.display = "block";
+    document.getElementsByClassName("arrow-block")[0].style.marginTop = "0px";
+    document.querySelector(".input-group").style.display = "block";
 }
 
-function clickeOnImg(num) {
-  console.log('Choosen!' + num);
-  var href =  document.querySelectorAll('li > img')[num].getAttribute("src");
-  
-  document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("xlink:href", href);
-  var width = document.querySelector("#img"+ getQueryVariable("item")+ " > image").getBoundingClientRect().width;
-  var height = document.querySelector("#img"+ getQueryVariable("item")+ " > image").getBoundingClientRect().height;
-  document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("width", width);
-  //document.querySelector("#img"+ getQueryVariable("item") +" > image").removeAttribute("height");
-  document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("height", height);
-  document.getElementsByClassName("arrow-block")[0].style.display = "block";
-  document.getElementsByClassName("bx-wrapper")[0].style.display = "none";
-  document.getElementsByClassName("alert-block")[0].style.top = "90px";
-  document.getElementsByClassName("capture-text")[0].style.display = "none";
-  document.getElementsByClassName("capture-text")[1].style.display = "none";
-  //document.getElementsByClassName("bootstrap-filestyle")[0].style.display = "none";
-  
-  //$(".btn").filestyle('clear');
-  
-}
-  
-
-function encodeImageFileAsURL() {
-  var filesSelected = document.getElementById("inputFileToLoad").files;
-  if (filesSelected.length > 0) {
-    var fileToLoad = filesSelected[0];
-
-    var fileReader = new FileReader();
-
-    fileReader.onload = function(fileLoadedEvent) {
-      var srcData = fileLoadedEvent.target.result; // base64 data
-      document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("xlink:href", srcData);
-      var width = document.querySelector("#img"+ getQueryVariable("item")+ " > image").getBoundingClientRect().width;
-      var height = document.querySelector("#img"+ getQueryVariable("item")+ " > image").getBoundingClientRect().height;
-      document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("width", width);
-      document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("height", height);
-      //document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("x", "35");
-      //document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("y", "0");
-      document.getElementsByClassName("arrow-block")[0].style.display = "block";
-
-      /************ Убираем слайдер к херам при выборе картинки с компа *************/
-      document.getElementsByClassName("capture-text")[0].style.display = "none";
-      document.getElementsByClassName("capture-text")[1].style.display = "none";
-      document.getElementsByClassName("bx-wrapper")[0].style.display = "none";
-      document.getElementsByClassName("alert-block")[0].style.top = "90px"; 
-      //document.getElementsByClassName("bootstrap-filestyle")[0].style.display = "none";
-      /******************************************************************************/
-    }
-    fileReader.readAsDataURL(fileToLoad);
-  }
-  else {
-     
-
-  }
-}
-
-
-/*********************************** GET DATA FROM LOCAL STORAGE ************************************/
-
-var myface = JSON.parse(localStorage.getItem("face"));
-document.querySelector("#myface > image").setAttribute("x", myface.pos_x);
-document.querySelector("#myface > image").setAttribute("y", myface.pos_y);
-document.querySelector("#myface > image").setAttribute("width", myface.width);
-document.querySelector("#myface > image").setAttribute("height", myface.height);
-document.querySelector("#myface > image").setAttribute("xlink:href", myface.image);
-document.querySelectorAll("circle")[1].setAttribute("stroke", "#fff225");
-document.querySelectorAll("circle")[1].setAttribute("stroke-width", "1");
-
-  if (localStorage.getItem("item1") != null) {
-      var obj1 = JSON.parse(localStorage.getItem("item1")) ;
-      document.querySelector("#img1 > image").setAttribute("x", obj1.pos_x);
-      document.querySelector("#img1 > image").setAttribute("y", obj1.pos_y);
-      document.querySelector("#img1 > image").setAttribute("width", obj1.width);
-      document.querySelector("#img1 > image").setAttribute("height", obj1.height);
-      document.querySelector("#img1 > image").setAttribute("xlink:href", obj1.image);
-  } else {
-      document.querySelector("#img1 > image").setAttribute("x", "245");
-      document.querySelector("#img1 > image").setAttribute("y", "35");
-      document.querySelector("#img1 > image").setAttribute("width", "108");
-      document.querySelector("#img1 > image").setAttribute("xlink:href", "img/icons/zerno-1.png");
-  }
-
-  if (localStorage.getItem("item2") != null) {
-      var obj2 = JSON.parse(localStorage.getItem("item2")) ;
-      document.querySelector("#img2 > image").setAttribute("x", obj2.pos_x);
-      document.querySelector("#img2 > image").setAttribute("y", obj2.pos_y);
-      document.querySelector("#img2 > image").setAttribute("width", obj2.width);
-      document.querySelector("#img2 > image").setAttribute("height", obj2.height);
-      document.querySelector("#img2 > image").setAttribute("xlink:href", obj2.image);
-  } else {
-      document.querySelector("#img2 > image").setAttribute("x", "406");
-      document.querySelector("#img2 > image").setAttribute("y", "105");
-      document.querySelector("#img2 > image").setAttribute("width", "108");
-      document.querySelector("#img2 > image").setAttribute("xlink:href", "img/icons/zerno-2.png");
-  }
-
-  if (localStorage.getItem("item3") != null) {
-      var obj3 = JSON.parse(localStorage.getItem("item3")) ;
-      document.querySelector("#img3 > image").setAttribute("x", obj3.pos_x);
-      document.querySelector("#img3 > image").setAttribute("y", obj3.pos_y);
-      document.querySelector("#img3 > image").setAttribute("width", obj3.width);
-      document.querySelector("#img3 > image").setAttribute("height", obj3.height);
-      document.querySelector("#img3 > image").setAttribute("xlink:href", obj3.image);
-  } else {
-      document.querySelector("#img3 > image").setAttribute("x", "455");
-      document.querySelector("#img3 > image").setAttribute("y", "262");
-      document.querySelector("#img3 > image").setAttribute("width", "108");
-      document.querySelector("#img3 > image").setAttribute("xlink:href", "img/icons/zerno-3.png");
-  }
-
-  if (localStorage.getItem("item4") != null) {
-      var obj4 = JSON.parse(localStorage.getItem("item4")) ;
-      document.querySelector("#img4 > image").setAttribute("x", obj4.pos_x);
-      document.querySelector("#img4 > image").setAttribute("y", obj4.pos_y);
-      document.querySelector("#img4 > image").setAttribute("width", obj4.width);
-      document.querySelector("#img4 > image").setAttribute("height", obj4.height);
-      document.querySelector("#img4 > image").setAttribute("xlink:href", obj4.image);
-  } else {
-      document.querySelector("#img4 > image").setAttribute("x", "406");
-      document.querySelector("#img4 > image").setAttribute("y", "410");
-      document.querySelector("#img4 > image").setAttribute("width", "108");
-      document.querySelector("#img4 > image").setAttribute("xlink:href", "img/icons/zerno-4.png");
-  }
-
-  if (localStorage.getItem("item5") != null) {
-      var obj5 = JSON.parse(localStorage.getItem("item5")) ;
-      document.querySelector("#img5 > image").setAttribute("x", obj5.pos_x);
-      document.querySelector("#img5 > image").setAttribute("y", obj5.pos_y);
-      document.querySelector("#img5 > image").setAttribute("width", obj5.width);
-      document.querySelector("#img5 > image").setAttribute("height", obj5.height);
-      document.querySelector("#img5 > image").setAttribute("xlink:href", obj5.image);
-  } else {
-      document.querySelector("#img5 > image").setAttribute("x", "245");
-      document.querySelector("#img5 > image").setAttribute("y", "487");
-      document.querySelector("#img5 > image").setAttribute("width", "108");
-      document.querySelector("#img5 > image").setAttribute("xlink:href", "img/icons/zerno-5.png");
-  }
-
-  if (localStorage.getItem("item6") != null) {
-      var obj6 = JSON.parse(localStorage.getItem("item6")) ;
-      document.querySelector("#img6 > image").setAttribute("x", obj6.pos_x);
-      document.querySelector("#img6 > image").setAttribute("y", obj6.pos_y);
-      document.querySelector("#img6 > image").setAttribute("width", obj6.width);
-      document.querySelector("#img6 > image").setAttribute("height", obj6.height);
-      document.querySelector("#img6 > image").setAttribute("xlink:href", obj6.image);
-  } else {
-      document.querySelector("#img6 > image").setAttribute("x", "90");
-      document.querySelector("#img6 > image").setAttribute("y", "410");
-      document.querySelector("#img6 > image").setAttribute("width", "108");
-      document.querySelector("#img6 > image").setAttribute("xlink:href", "img/icons/zerno-6.png");
-  }
-
-  if (localStorage.getItem("item7") != null) {
-      var obj7 = JSON.parse(localStorage.getItem("item7")) ;
-      document.querySelector("#img7 > image").setAttribute("x", obj7.pos_x);
-      document.querySelector("#img7 > image").setAttribute("y", obj7.pos_y);
-      document.querySelector("#img7 > image").setAttribute("width", obj7.width);
-      document.querySelector("#img7 > image").setAttribute("height", obj7.height);
-      document.querySelector("#img7 > image").setAttribute("xlink:href", obj7.image);
-  } else {
-      document.querySelector("#img7 > image").setAttribute("x", "40");
-      document.querySelector("#img7 > image").setAttribute("y", "262");
-      document.querySelector("#img7 > image").setAttribute("width", "108");
-      document.querySelector("#img7 > image").setAttribute("xlink:href", "img/icons/zerno-7.png");
-  }
-
-  if (localStorage.getItem("item8") != null) {
-      var obj8 = JSON.parse(localStorage.getItem("item8")) ;
-      document.querySelector("#img8 > image").setAttribute("x", obj8.pos_x);
-      document.querySelector("#img8 > image").setAttribute("y", obj8.pos_y);
-      document.querySelector("#img8 > image").setAttribute("width", obj8.width);
-      document.querySelector("#img8 > image").setAttribute("height", obj8.height);
-      document.querySelector("#img8 > image").setAttribute("xlink:href", obj8.image);
-  } else {
-      document.querySelector("#img8 > image").setAttribute("x", "88");
-      document.querySelector("#img8 > image").setAttribute("y", "114");
-      document.querySelector("#img8 > image").setAttribute("width", "108");
-      document.querySelector("#img8 > image").setAttribute("xlink:href", "img/icons/zerno-8.png");
-  }
-
-/*********************************** GET DATA FROM LOCAL STORAGE ************************************/
-
-function leftClick() {
-    console.log("left click!");
-    var lx = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("x");
-    document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("x", Number(lx)-4);
-}
-
-function rightClick() {
-    console.log("right click!");
-    var rx = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("x");
-    document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("x", Number(rx)+4);
+function isSafari() {
+    return /^((?!chrome).)*safari/i.test(navigator.userAgent);
 }
 
 function upClick() {
-    console.log("up click!");
-    var uy = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("y");
-    document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("y", Number(uy)-4);
+    var obj = getImageElement();
+
+    var I = 10 ;
+    var rotation = parseFloat( obj.style.transform.substr(7, obj.style.transform.length-11 ) );
+    if( isSafari() ){ rotation = 0; }
+
+    obj.setAttribute( "y", parseFloat( obj.getAttribute("y") ) - Math.cos( rotation )*I );
+    obj.setAttribute( "x", parseFloat( obj.getAttribute("x") ) - Math.sin( rotation )*I );
 }
 
 function downClick() {
-    console.log("down click!");
-    var dy = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("y");
-    document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("y", Number(dy)+4);
+    var obj = getImageElement();
+
+    var I = 10 ;
+    var rotation = parseFloat( obj.style.transform.substr(7, obj.style.transform.length-11 ) );
+    if( isSafari() ){ rotation = 0; }
+
+    obj.setAttribute( "y", parseFloat( obj.getAttribute("y") ) + Math.cos( rotation )*I );
+    obj.setAttribute( "x", parseFloat( obj.getAttribute("x") ) + Math.sin( rotation )*I );
+}
+
+function rightClick() {
+    var obj = getImageElement();
+
+    var I = 10 ;
+    var rotation = parseFloat( obj.style.transform.substr(7, obj.style.transform.length-11 ) );
+    if( isSafari() ){ rotation = 0; }
+
+    obj.setAttribute( "y", parseFloat( obj.getAttribute("y") ) - Math.sin( rotation )*I );
+    obj.setAttribute( "x", parseFloat( obj.getAttribute("x") ) + Math.cos( rotation )*I );
+}
+
+function leftClick() {
+    var obj = getImageElement();
+
+    var I = 10 ;
+    var rotation = parseFloat( obj.style.transform.substr(7, obj.style.transform.length-11 ) );
+    if( isSafari() ){ rotation = 0; }
+
+    obj.setAttribute( "y", parseFloat( obj.getAttribute("y") ) + Math.sin( rotation )*I );
+    obj.setAttribute( "x", parseFloat( obj.getAttribute("x") ) - Math.cos( rotation )*I );
 }
 
 function zoomIn() {
-    var zoomWidth = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("width");
-    var zoomHeight = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("height");
-    document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("width", Number(zoomWidth)+20);
-    document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("height", Number(zoomHeight)+20);
-    console.log(zoomWidth +" X "+zoomHeight);
+    var zoomWidth = getImageElement().getAttribute("width");
+    var zoomHeight = getImageElement().getAttribute("height");
+    getImageElement().setAttribute("width", Number(zoomWidth)+10);
+    getImageElement().setAttribute("height", Number(zoomHeight)+10);
 }
 
 function zoomOut() {
-    var zoomWidth = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("width");
-    var zoomHeight = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("height");
-    document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("width", Number(zoomWidth)-20);
-    document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("height", Number(zoomHeight)-20);
-    console.log(zoomWidth +" X "+zoomHeight);
+    var zoomWidth = getImageElement().getAttribute("width");
+    var zoomHeight = getImageElement().getAttribute("height");
+    getImageElement().setAttribute("width", Number(zoomWidth)-10);
+    getImageElement().setAttribute("height", Number(zoomHeight)-10);
 }
 
-window.item = Number(getQueryVariable("item"));
-
-function setDataToLocalStorage() {
-    window.item = window.item + 1;
-
-    if (document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("xlink:href") == "img/icons-yellow/zerno-y-"+getQueryVariable("item")+".png")
-    {
-      if (window.item <= 8) {
-        document.querySelector(".next").setAttribute("href", "thirth.html?item=" + window.item);
-
-      }
-      else {
-        alert("Thats All folks");
-        document.querySelector(".next").setAttribute("href", "final.html");
-      }
-      return;
-    }
-    var cx = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("x");
-    var cy = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("y");
-
-    var width = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute('width');
-    var height = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute('height');
-    var href = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("xlink:href");
-
-    var item = {
-        image: href,
-        pos_x : cx,
-        pos_y : cy,
-        width : width,
-        height : height
-    };              
-     
-    var serialFace = JSON.stringify(item);
-    localStorage.setItem("item"+getQueryVariable("item"), serialFace);
-    if (window.item <= 8) {
-      document.querySelector(".next").setAttribute("href", "thirth.html?item=" + window.item);
-    }
-    else {
-      alert("Thats All folks");
-      document.querySelector(".next").setAttribute("href", "final.html");
-    }
-    
-    //localStorage.clear();
+function rotationRight(){
+    var obj = getImageElement();
+    var rotation_str = obj.style.transform  ;
+    var rotation = parseFloat( rotation_str.substr(7, rotation_str.length-11 ) );
+    obj.style.transform  = 'rotate('+ (rotation + 0.1 ) +'rad)' ;
+}
+function rotationLeft() {
+    var obj = getImageElement();
+    var rotation_str = obj.style.transform  ;
+    var rotation = parseFloat( rotation_str.substr(7, rotation_str.length-11 ) );
+    obj.style.transform  = 'rotate('+ (rotation - 0.1 ) +'rad)' ;
 }
 
-function stepBack() {
-  if (document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("xlink:href") == "img/icons-yellow/zerno-y-"+ getQueryVariable("item") +".png")
-  {
-    alert(document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("xlink:href"));
-    document.querySelector("#img"+ getQueryVariable("item") +" > image").setAttribute("xlink:href", "img/icons/zerno-"+getQueryVariable("item"));
-  }
-  else {
-    var cx = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("x");
-    var cy = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("y");
 
-    var width = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute('width');
-    var height = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute('height');
-    var href = document.querySelector("#img"+ getQueryVariable("item") +" > image").getAttribute("xlink:href");
+var waitingDialog = waitingDialog || (function ($) {
+    'use strict';
 
-    var item = {
-        image: href,
-        pos_x : cx,
-        pos_y : cy,
-        width : width,
-        height : height
-    };               
-    var serialFace = JSON.stringify(item);
-    localStorage.setItem("item"+getQueryVariable("item"), serialFace);
-  }
+    // Creating modal dialog's DOM
+    var $dialog = $(
+        '<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15%; overflow-y:visible;">' +
+        '<div class="modal-dialog modal-m">' +
+        '<div class="modal-content">' +
+            '<div class="modal-header"><h3 style="margin:0;"></h3></div>' +
+            '<div class="modal-body">' +
+                '<div class="progress progress-striped active" style="margin-bottom:0;"><div class="progress-bar" style="width: 100%"></div></div>' +
+            '</div>' +
+        '</div></div></div>');
 
-  var prev = window.item-1;
-  if (prev == 0) {
-    alert(prev);
-    document.querySelector(".prev").setAttribute("href", "second.html");
-  }
-  else {
-    
-    document.querySelector(".prev").setAttribute("href", "thirth.html?item=" + prev);
-  }
+    return {
+        /**
+         * Opens our dialog
+         * @param message Custom message
+         * @param options Custom options:
+         *                options.dialogSize - bootstrap postfix for dialog size, e.g. "sm", "m";
+         *                options.progressType - bootstrap postfix for progress bar type, e.g. "success", "warning".
+         */
+        show: function (message, options) {
+            // Assigning defaults
+            if (typeof options === 'undefined') {
+                options = {};
+            }
+            if (typeof message === 'undefined') {
+                message = 'Фото завантажується';
+            }
+            var settings = $.extend({
+                dialogSize: 'm',
+                progressType: '',
+                onHide: null // This callback runs after the dialog was hidden
+            }, options);
+
+            // Configuring dialog
+            $dialog.find('.modal-dialog').attr('class', 'modal-dialog').addClass('modal-' + settings.dialogSize);
+            $dialog.find('.progress-bar').attr('class', 'progress-bar');
+            if (settings.progressType) {
+                $dialog.find('.progress-bar').addClass('progress-bar-' + settings.progressType);
+            }
+            $dialog.find('h3').text(message);
+            // Adding callbacks
+            if (typeof settings.onHide === 'function') {
+                $dialog.off('hidden.bs.modal').on('hidden.bs.modal', function (e) {
+                    settings.onHide.call($dialog);
+                });
+            }
+            // Opening dialog
+            $dialog.modal();
+        },
+        /**
+         * Closes dialog
+         */
+        hide: function () {
+            $dialog.modal('hide');
+        }
+    };
+
+})(jQuery);
+
+function move( fill , x , y ) {
+    if (fill != "url(#img"+ getPosition() +")") {
+        return 0;
+    }
+
+    var obj = document.querySelector( fill.substr( 4 ,  fill.length-5 ) + ' > image');
+    //Получаем угол поворота
+    var rotation = parseFloat( obj.style.transform.substr(7, obj.style.transform.length-11 ) );
+    if( isSafari() ){ rotation = 0; }
+
+    //Перемещяем изображение
+    obj.setAttribute( "y", parseFloat( obj.getAttribute("y") ) + Math.cos( rotation )*y - Math.sin( rotation )*x );
+    obj.setAttribute( "x", parseFloat( obj.getAttribute("x") ) + Math.sin( rotation )*y + Math.cos( rotation )*x );
 }
 
-/*
+var mouseOld = null;
 
-  var getLocalStorageSize = function() {
-      var total = 0;
-      for (var x in localStorage) {
-          // Value is multiplied by 2 due to data being stored in `utf-16` format, which requires twice the space.
-          var amount = (localStorage[x].length * 2) / 1024 / 1024;
-          total += amount;
-      }
-      return total.toFixed(2);
-  };
+function mouseStart() {
+    mouseOld = this.event;
+}
 
-*/
+function mouseUp() {
+    mouseOld = null;
+}
 
 
-/*
-<div class='dialog'>
-<svg width='220' height='150' xmlns='http://www.w3.org/2000/svg'>
- <g>
-  <title>background</title>
-  <rect fill='none' id='canvas_background' height='152' width='222' y='-1' x='-1'/>
- </g>
- <g>
-  <title>Layer 1</title>
-  <path stroke='#fff225' id='svg_3' d='m110.24998,0.75001c-60.47553,0 -109.49998,33.35593 -109.49998,74.50127c0,14.06056 5.79571,27.19582 15.76853,38.41186l-15.76853,31.36134l43.90144,-10.22553c18.29424,9.34563 40.96098,14.95104 65.59854,14.95104c60.47559,0 109.50001,-33.35597 109.50001,-74.49872c0,-41.14533 -49.02441,-74.50127 -109.50001,-74.50127l0,0.00001z' stroke-opacity='null' stroke-width='2' fill='none'/>
- </g>
-</svg>
-</div>
+function mouseMove( ) {
+    if( !mouseOld ){ return null; }
+    if( this.event.which != 1 ){ return null ; }
 
-$(".alert-block").html("<div class='dialog'><svg width='220' height='150' xmlns='http://www.w3.org/2000/svg'><g><title>background</title><rect fill='none' id='canvas_background' height='152' width='222' y='-1' x='-1'/></g><g><title>Layer 1</title><path stroke='#fff225' id='svg_3' d='m110.24998,0.75001c-60.47553,0 -109.49998,33.35593 -109.49998,74.50127c0,14.06056 5.79571,27.19582 15.76853,38.41186l-15.76853,31.36134l43.90144,-10.22553c18.29424,9.34563 40.96098,14.95104 65.59854,14.95104c60.47559,0 109.50001,-33.35597 109.50001,-74.49872c0,-41.14533 -49.02441,-74.50127 -109.50001,-74.50127l0,0.00001z' stroke-opacity='null' stroke-width='2' fill='none'/></g></svg></div>");
-*/
+    var x = this.event.clientX - mouseOld.clientX ;
+    var y = this.event.clientY - mouseOld.clientY ;
+
+    mouseOld = this.event ;
+
+    move( this.event.target.getAttribute('fill') , x, y );
+
+}
+
+var touchOld = null;
+
+function touchStart() { touchOld = this.event.touches[0]; }
+
+function touchMove( ) {
+    if( ! touchOld ){ return null; }
+    var x = this.event.touches[0].clientX - touchOld.clientX ;
+    var y = this.event.touches[0].clientY - touchOld.clientY ;
+    touchOld = this.event.touches[0];
+
+    move( this.event.target.getAttribute('fill') , x, y );
+}
